@@ -8,11 +8,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var START_MILLI_SECONDS = 60000L
 
     lateinit var countdown_timer: CountDownTimer
     var isRunning: Boolean = false
-    var time_in_milli_seconds = 0L
+    var time_in_seconds = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +22,8 @@ class MainActivity : AppCompatActivity() {
             if (isRunning) {
                 pauseTimer()
             } else {
-                val time  = 15
-                time_in_milli_seconds = time.toLong() *60000L
-                startTimer(time_in_milli_seconds)
+                time_in_seconds = 900L
+                startTimer(time_in_seconds)
             }
         }
 
@@ -37,14 +35,14 @@ class MainActivity : AppCompatActivity() {
         isRunning = false
     }
 
-    private fun startTimer(time_in_seconds: Long) {
-        countdown_timer = object : CountDownTimer(time_in_seconds, 1000) {
+    private fun startTimer(tis: Long) {
+        countdown_timer = object : CountDownTimer(tis*1000L, 1000) {
             override fun onFinish() {
 
             }
 
             override fun onTick(p0: Long) {
-                time_in_milli_seconds = p0
+                time_in_seconds = p0 / 1000L
                 updateTextUI()
             }
         }
@@ -55,9 +53,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateTextUI() {
-        val minute = (time_in_milli_seconds / 1000) / 60
-        val seconds = (time_in_milli_seconds / 1000) % 60
-
-        bot_clock.text = "$minute:$seconds"
+        bot_clock.text = Clock(time_in_seconds).updateText()
     }
 }
