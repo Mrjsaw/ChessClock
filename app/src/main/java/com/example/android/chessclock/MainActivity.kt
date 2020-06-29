@@ -11,18 +11,17 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var countdown_timer: CountDownTimer
     var isRunning: Boolean = false
-    var time_in_seconds = 0L
+    var time_in_seconds = 900L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
-        start.setOnClickListener {
+        bot_sq.setOnClickListener {
             if (isRunning) {
                 pauseTimer()
             } else {
-                time_in_seconds = 900L
                 startTimer(time_in_seconds)
             }
         }
