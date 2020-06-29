@@ -25,16 +25,22 @@ class MainActivity : AppCompatActivity() {
         top_sq.setOnClickListener {
             if (isRunningTop) {
                 pauseTimerTop()
+                top_sq.isClickable=false
+                bot_sq.isClickable=true
+                startTimerBot(time_in_seconds_bot)
             } else {
-                startTimerTop(time_in_seconds_top+increment)
+                startTimerTop(time_in_seconds_top)
             }
 
         }
         bot_sq.setOnClickListener {
             if (isRunningBot) {
                 pauseTimerBot()
+                bot_sq.isClickable=false
+                top_sq.isClickable=true
+                startTimerTop(time_in_seconds_top)
             } else {
-                startTimerBot(time_in_seconds_bot+increment)
+                startTimerBot(time_in_seconds_bot)
             }
         }
 
