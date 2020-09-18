@@ -4,25 +4,41 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
+import android.view.WindowManager
 
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
 
+    //TODO: Fix clock states ('CLOCKS_PAUSED', 'CLOCK_START' ,'BOT_START', 'TOP_START', 'BOT_END', 'TOP_END')
+
+
+    enum class ClockStates { CLOCKS_PAUSED, CLOCK_INIT , CLOCK_START, CLOCK_END }
 
     lateinit var countdown_timer_bot: CountDownTimer
     lateinit var countdown_timer_top: CountDownTimer
     var isRunningBot: Boolean = false
     var isRunningTop: Boolean = false
+    var clockState: ClockStates = ClockStates.CLOCK_INIT
     var time_in_seconds_bot = 900L
     var time_in_seconds_top = 900L
     var increment = 5L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_main)
 
         top_sq.setOnClickListener {
+
+            when(clockState) {
+                ClockStates.CLOCK_INIT -> startTimerBot(time_in_seconds_bot, false) // maak top nu unclickable, bot clickable en zet state naar CLOCK START
+                ClockStates.CLOCKS_PAUSED -> "paused" //
+                ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot,true) // pauzeer top clock en maak top unclickable en bot clickable en resume bot clock
+                ClockStates.CLOCK_END -> "top start" // m
+            }
+            /*
             if (isRunningTop) {
                 pauseTimerTop()
                 top_sq.isClickable=false
@@ -31,9 +47,13 @@ class MainActivity : AppCompatActivity() {
             } else {
                 startTimerTop(time_in_seconds_top)
             }
+            */
+            if (clockState == ClockStates.CLOCK_START) {
 
+            }
         }
         bot_sq.setOnClickListener {
+            /*
             if (isRunningBot) {
                 pauseTimerBot()
                 bot_sq.isClickable=false
@@ -41,6 +61,13 @@ class MainActivity : AppCompatActivity() {
                 startTimerTop(time_in_seconds_top)
             } else {
                 startTimerBot(time_in_seconds_bot)
+            }
+             */
+            when(clockState) {
+                ClockStates.CLOCK_INIT -> startTimerTop(time_in_seconds_top,false) // maak top nu unclickable, bot clickable en zet state naar CLOCK START
+                ClockStates.CLOCKS_PAUSED -> "paused" //
+                ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top,true) // pauzeer top clock en maak top unclickable en bot clickable en resume bot clock
+                ClockStates.CLOCK_END -> "top start" // m
             }
         }
 
@@ -57,10 +84,12 @@ class MainActivity : AppCompatActivity() {
         isRunningTop = false
     }
 
-    private fun startTimerBot(seconds: Long) {
+    private fun startTimerBot(seconds: Long, check: Boolean) {
         countdown_timer_bot = object : CountDownTimer(seconds*1000L, 1000) {
             override fun onFinish() {
                 Log.d("T","Bottom timer has ended!")
+                clockState = ClockStates.CLOCK_END
+                //TODO: Verander ClockState naar CLOCKS_END
             }
 
             override fun onTick(p0: Long) {
@@ -71,13 +100,20 @@ class MainActivity : AppCompatActivity() {
         countdown_timer_bot.start()
 
         isRunningBot = true
+        top_sq.isClickable=false
+        bot_sq.isClickable=true
+        if(check) {
+            pauseTimerTop()
+        }
 
+        clockState = ClockStates.CLOCK_START
     }
 
-    private fun startTimerTop(seconds: Long) {
+    private fun startTimerTop(seconds: Long, check: Boolean) {
         countdown_timer_top = object: CountDownTimer(seconds*1000L,1000) {
             override fun onFinish() {
                 Log.d("T","Top timer has ended!")
+                clockState = ClockStates.CLOCK_END
             }
 
             override fun onTick(p0: Long) {
@@ -88,6 +124,14 @@ class MainActivity : AppCompatActivity() {
         countdown_timer_top.start()
 
         isRunningTop = true
+        top_sq.isClickable=true
+        bot_sq.isClickable=false
+
+        if (check) {
+            pauseTimerBot()
+        }
+
+        clockState = ClockStates.CLOCK_START
 
     }
 
