@@ -1,7 +1,7 @@
 package com.example.android.chessclock
 
 
-class Clock(private val timeSeconds: Long) {
+class Clock(private val timeSeconds: Int) {
 
     fun updateText(): String {
         if (timeSeconds < 60) {

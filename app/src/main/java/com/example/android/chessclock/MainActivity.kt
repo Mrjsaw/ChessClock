@@ -2,18 +2,13 @@ package com.example.android.chessclock
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatDelegate
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.ImageView
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -25,14 +20,14 @@ class MainActivity : AppCompatActivity() {
 
     enum class ClockStates { CLOCKS_PAUSED, CLOCK_INIT , CLOCK_START, CLOCK_END }
 
-    lateinit var countdown_timer_bot: CountDownTimer
-    lateinit var countdown_timer_top: CountDownTimer
-    var isRunningBot: Boolean = false
-    var isRunningTop: Boolean = false
+    private lateinit var countdown_timer_bot: CountDownTimer
+    private lateinit var countdown_timer_top: CountDownTimer
+    private var isRunningBot: Boolean = false
+    private var isRunningTop: Boolean = false
     var clockState: ClockStates = ClockStates.CLOCK_INIT
-    var time_in_seconds_bot = 900L
-    var time_in_seconds_top = 900L
-    var increment = 5L
+    var time_in_seconds_bot = 900
+    var time_in_seconds_top = 900
+    var increment = 5
 
     private var isNightModeOn: Boolean = false
 
@@ -116,8 +111,8 @@ class MainActivity : AppCompatActivity() {
         isRunningTop = false
     }
 
-    private fun startTimerBot(seconds: Long, check: Boolean) {
-        countdown_timer_bot = object : CountDownTimer(seconds*1000L, 1000) {
+    private fun startTimerBot(seconds: Int, check: Boolean) {
+        countdown_timer_bot = object : CountDownTimer((seconds*1000).toLong(), 1000) {
             override fun onFinish() {
                 Log.d("T","Bottom timer has ended!")
                 clockState = ClockStates.CLOCK_END
@@ -125,7 +120,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTick(p0: Long) {
-                time_in_seconds_bot = p0 / 1000L
+                time_in_seconds_bot = (p0 / 1000L).toInt()
                 updateTextUIBot()
             }
         }
@@ -141,15 +136,15 @@ class MainActivity : AppCompatActivity() {
         clockState = ClockStates.CLOCK_START
     }
 
-    private fun startTimerTop(seconds: Long, check: Boolean) {
-        countdown_timer_top = object: CountDownTimer(seconds*1000L,1000) {
+    private fun startTimerTop(seconds: Int, check: Boolean) {
+        countdown_timer_top = object: CountDownTimer((seconds*1000).toLong(),1000) {
             override fun onFinish() {
                 Log.d("T","Top timer has ended!")
                 clockState = ClockStates.CLOCK_END
             }
 
             override fun onTick(p0: Long) {
-                time_in_seconds_top = p0 / 1000L
+                time_in_seconds_top = (p0 / 1000L).toInt()
                 updateTextUITop()
             }
         }
