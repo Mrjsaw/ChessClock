@@ -9,7 +9,11 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+
         myPagerAdapter = MyFragmentPagerAdapter(supportFragmentManager)
         viewPager.adapter = myPagerAdapter
+        tabLayout.setupWithViewPager(viewPager)
+        tabLayout.getTabAt(0)?.text = "Game"
+        tabLayout.getTabAt(1)?.text = "Theme"
     }
 }
