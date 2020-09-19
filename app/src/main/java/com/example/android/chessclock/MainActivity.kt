@@ -1,9 +1,12 @@
 package com.example.android.chessclock
 
+import android.content.res.Configuration
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.support.v7.app.AppCompatDelegate
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -24,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     var time_in_seconds_bot = 900L
     var time_in_seconds_top = 900L
     var increment = 5L
+
+    var mode : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -140,6 +145,24 @@ class MainActivity : AppCompatActivity() {
     }
     private fun updateTextUITop() {
         top_clock.text = Clock(time_in_seconds_top).updateText()
+    }
+
+    /**
+     * Switch between Light / Dark theme
+     */
+    //TODO : Step through this with debugger to see why it isn't switching between theme's
+    fun bulbClicked(view: View) {
+        mode =
+            if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+                Configuration.UI_MODE_NIGHT_NO
+            ) {
+                AppCompatDelegate.MODE_NIGHT_YES
+            } else {
+                AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+            }
+
+        // Change UI Mode
+        AppCompatDelegate.setDefaultNightMode(mode)
     }
 }
 
