@@ -6,9 +6,11 @@ import android.content.res.Configuration
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatDelegate
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
@@ -32,21 +34,33 @@ class MainActivity : AppCompatActivity() {
     var time_in_seconds_top = 900L
     var increment = 5L
 
-//    val MyPREFERENCES: String = "nightModePrefs"
-//    val KEY_ISNIGHTMODE: String = "isNightMode"
-//    val sharedPref: SharedPreferences = this.getSharedPreferences(MyPREFERENCES,Context.MODE_PRIVATE)
-//    private lateinit var lightBulb : Button
+    private var isNightModeOn: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_main)
 
-//        lightBulb = findViewById(R.id.action_theme)
-//
-//        lightBulb.setOnClickListener (View.OnClickListener{
-//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-//        })
+        val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val sharedPrefsEdit:SharedPreferences.Editor=sharedPreferences.edit()
+
+        loadData()
+
+        action_theme.setOnClickListener(View.OnClickListener{
+            if (isNightModeOn){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                sharedPrefsEdit.putBoolean("BOOLEAN_KEY",false)
+                sharedPrefsEdit.apply()
+                //TODO: redraw fragment without destroying somehow instead of using recreate
+                recreate()
+
+            }else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                sharedPrefsEdit.putBoolean("BOOLEAN_KEY",true)
+                sharedPrefsEdit.apply()
+                recreate()
+            }
+        })
 
         top_sq.setOnClickListener {
 
@@ -160,5 +174,13 @@ class MainActivity : AppCompatActivity() {
         top_clock.text = Clock(time_in_seconds_top).updateText()
     }
 
+    private fun loadData() {
+        val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        isNightModeOn = sharedPreferences.getBoolean("BOOLEAN_KEY",false)
+
+        if (isNightModeOn){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
+    }
 }
 
