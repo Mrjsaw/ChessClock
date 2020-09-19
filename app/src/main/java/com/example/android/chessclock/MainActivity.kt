@@ -15,12 +15,12 @@ const val INCREMENT = 5L //change top/bot
 
 class MainActivity : AppCompatActivity() {
 
-    enum class ClockStates { CLOCK_INIT , CLOCK_START, CLOCK_END }
+    enum class ClockStates { CLOCK_START, CLOCK_END }
 
     private lateinit var countDownTimerBot: CountDownTimer
     private lateinit var countDownTimerTop: CountDownTimer
 
-    var clockState: ClockStates = ClockStates.CLOCK_INIT
+    var clockState: ClockStates = ClockStates.CLOCK_START
     var time_in_seconds_bot = START_TIME
     var time_in_seconds_top = START_TIME
 
@@ -41,8 +41,7 @@ class MainActivity : AppCompatActivity() {
         top_sq.setOnClickListener {
 
             when(clockState) {
-                ClockStates.CLOCK_INIT -> startTimerBot(time_in_seconds_bot, false)
-                ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot,true) //add increments hier nog
+                ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
                 ClockStates.CLOCK_END -> restartTimers()
             }
 
@@ -50,8 +49,7 @@ class MainActivity : AppCompatActivity() {
         bot_sq.setOnClickListener {
 
             when(clockState) {
-                ClockStates.CLOCK_INIT -> startTimerTop(time_in_seconds_top,false)
-                ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top,true) //add increments hier nog
+                ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
                 ClockStates.CLOCK_END -> restartTimers()
             }
         }
@@ -74,19 +72,23 @@ class MainActivity : AppCompatActivity() {
         time_in_seconds_top = START_TIME
         updateTextUIBot()
         updateTextUITop()
-        clockState = ClockStates.CLOCK_INIT
+        clockState = ClockStates.CLOCK_START
 
     }
 
     private fun pauseTimerBot() {
-        countDownTimerBot.cancel()
+        if (this::countDownTimerBot.isInitialized) {
+            countDownTimerBot.cancel()
+        }
     }
 
     private fun pauseTimerTop() {
-        countDownTimerTop.cancel()
+        if (this::countDownTimerTop.isInitialized) {
+            countDownTimerTop.cancel()
+        }
     }
 
-    private fun startTimerBot(seconds: Long, check: Boolean) {
+    private fun startTimerBot(seconds: Long) {
         countDownTimerBot = object : CountDownTimer(seconds*1000L, 1000) {
             override fun onFinish() {
                 Log.d("T","Bottom timer has ended!")
@@ -102,17 +104,14 @@ class MainActivity : AppCompatActivity() {
 
         top_sq.isClickable=false
         bot_sq.isClickable=true
-        if(check) {
-            pauseTimerTop()
-        }
-
+        pauseTimerTop()
         clockState = ClockStates.CLOCK_START
     }
     private fun openSettings() {
         val intent = Intent(this, SettingsActivity::class.java)
         startActivity(intent)
     }
-    private fun startTimerTop(seconds: Long, check: Boolean) {
+    private fun startTimerTop(seconds: Long) {
         countDownTimerTop = object: CountDownTimer(seconds*1000L,1000) {
             override fun onFinish() {
                 Log.d("T","Top timer has ended!")
@@ -128,11 +127,7 @@ class MainActivity : AppCompatActivity() {
 
         top_sq.isClickable=true
         bot_sq.isClickable=false
-
-        if (check) {
-            pauseTimerBot()
-        }
-
+        pauseTimerBot()
         clockState = ClockStates.CLOCK_START
 
     }
