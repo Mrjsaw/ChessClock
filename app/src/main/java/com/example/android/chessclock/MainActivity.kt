@@ -1,5 +1,7 @@
 package com.example.android.chessclock
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +10,8 @@ import android.support.v7.app.AppCompatDelegate
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.Button
+import android.widget.ImageView
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,12 +32,21 @@ class MainActivity : AppCompatActivity() {
     var time_in_seconds_top = 900L
     var increment = 5L
 
-//    var mode : Int = 0
+//    val MyPREFERENCES: String = "nightModePrefs"
+//    val KEY_ISNIGHTMODE: String = "isNightMode"
+//    val sharedPref: SharedPreferences = this.getSharedPreferences(MyPREFERENCES,Context.MODE_PRIVATE)
+//    private lateinit var lightBulb : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_main)
+
+//        lightBulb = findViewById(R.id.action_theme)
+//
+//        lightBulb.setOnClickListener (View.OnClickListener{
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//        })
 
         top_sq.setOnClickListener {
 
@@ -147,22 +160,5 @@ class MainActivity : AppCompatActivity() {
         top_clock.text = Clock(time_in_seconds_top).updateText()
     }
 
-//    /**
-//     * Switch between Light / Dark theme
-//     */
-//    //TODO : Step through this with debugger to see why it isn't switching between theme's
-//    fun bulbClicked(view: View) {
-//        mode =
-//            if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
-//                Configuration.UI_MODE_NIGHT_NO
-//            ) {
-//                AppCompatDelegate.MODE_NIGHT_YES
-//            } else {
-//                AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-//            }
-//
-//        // Change UI Mode
-//        AppCompatDelegate.setDefaultNightMode(mode)
-//    }
 }
 
