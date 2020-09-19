@@ -23,11 +23,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
                 android:layout_weight="1"
+                android:fontFamily="@font/digital"
                 android:rotation="180"
                 android:text="15:00"
                 android:textAlignment="center"
                 android:textColor="@color/topClockText"
-                android:textSize="128dp" />
+                android:textSize="150dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -92,10 +93,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
                 android:layout_weight="1"
+                android:fontFamily="@font/digital"
                 android:text="15:00"
                 android:textAlignment="center"
                 android:textColor="@color/bottomClockText"
-                android:textSize="128dp" />
+                android:textSize="150dp" />
     </LinearLayout>
 
 </LinearLayout>
