@@ -6,8 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
         <item name="bulbColor">@color/bulbColor</item>
         <item name="settingsBar">@color/settingsBar</item>
+
+        <item name="topClockText">@color/topClockText</item>
+        <item name="bottomClockText">@color/bottomClockText</item>
     </style>
 
 </resources>
