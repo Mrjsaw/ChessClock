@@ -2,6 +2,7 @@ package com.example.android.chessclock
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_settings.*
 
@@ -17,5 +18,9 @@ class SettingsActivity : AppCompatActivity() {
         tabLayout.setupWithViewPager(viewPager)
         tabLayout.getTabAt(0)?.text = "Game"
         tabLayout.getTabAt(1)?.text = "Theme"
+    }
+
+    fun showTimePickerDialog(v: View) {
+        TimePickerFragment().show(supportFragmentManager, "timePicker")
     }
 }
