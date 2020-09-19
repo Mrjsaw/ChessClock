@@ -67,16 +67,15 @@ android:background="#363636">
 
             </Button>
 
-            <Button
-                    android:id="@+id/action_theme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@drawable/ic_lightbulb"
-                    android:onClick="bulbClicked">
-
-            </Button>
+<!--            <Button-->
+<!--                    android:id="@+id/action_theme"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/ic_lightbulb"-->
+<!--                    android:onClick="bulbClicked">-->
+<!--            </Button>-->
         </LinearLayout>
     </LinearLayout>
     <LinearLayout

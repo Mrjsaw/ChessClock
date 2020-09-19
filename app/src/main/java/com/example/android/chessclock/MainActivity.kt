@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     var time_in_seconds_top = 900L
     var increment = 5L
 
-    var mode : Int = 0
+//    var mode : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -147,22 +147,22 @@ class MainActivity : AppCompatActivity() {
         top_clock.text = Clock(time_in_seconds_top).updateText()
     }
 
-    /**
-     * Switch between Light / Dark theme
-     */
-    //TODO : Step through this with debugger to see why it isn't switching between theme's
-    fun bulbClicked(view: View) {
-        mode =
-            if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
-                Configuration.UI_MODE_NIGHT_NO
-            ) {
-                AppCompatDelegate.MODE_NIGHT_YES
-            } else {
-                AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-            }
-
-        // Change UI Mode
-        AppCompatDelegate.setDefaultNightMode(mode)
-    }
+//    /**
+//     * Switch between Light / Dark theme
+//     */
+//    //TODO : Step through this with debugger to see why it isn't switching between theme's
+//    fun bulbClicked(view: View) {
+//        mode =
+//            if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+//                Configuration.UI_MODE_NIGHT_NO
+//            ) {
+//                AppCompatDelegate.MODE_NIGHT_YES
+//            } else {
+//                AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+//            }
+//
+//        // Change UI Mode
+//        AppCompatDelegate.setDefaultNightMode(mode)
+//    }
 }
 
