@@ -13,5 +13,7 @@
         <item name="topClockText">@color/topClockText</item>
         <item name="bottomClockText">@color/bottomClockText</item>
     </style>
-
+    <style name="TabLayoutFontSize" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>

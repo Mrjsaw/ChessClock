@@ -46,22 +46,28 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/ic_settings_black_24dp">
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/settings_button"
+                android:background="@drawable/ic_settings_black_24dp">
 
-            </Button>
+        </Button>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/pause_button"
+                android:background="@drawable/ic_pause_black_24dp">
 
-            <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/ic_pause_black_24dp">
-
-            </Button>
-
+        </Button>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/restart_button"
+                android:background="@drawable/ic_replay_black_24dp">
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
