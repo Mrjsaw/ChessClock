@@ -65,33 +65,14 @@ class MainActivity : AppCompatActivity() {
         */
 
         /**
-         * Pause button listener
+         * Button listeners
          */
         pause_button.setOnClickListener {
             pauseState()
         }
-
-        /**
-         * Show dialog to restart when 'restart_button' pressed
-         */
         restart_button.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setMessage("Restart?")
-                .setPositiveButton(getString(R.string.yes)) { _, _ -> // dialog, whichButton are never used
-                    resetTimers()
-                    greyOutButtons()
-                    top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
-                    bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
-                    gameActive=false
-                    top_sq.isClickable=true
-                    bot_sq.isClickable=true
-                }
-                .setNegativeButton(getString(R.string.no)) { _, _ -> // dialog, whichButton are never used
-                    // Closes dialog
-                }
-                .show()
+            restartGame()
         }
-
         settings_button.setOnClickListener {
             openSettings()
         }
@@ -133,6 +114,27 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    /**
+     * Show dialog to restart game
+     */
+    private fun restartGame() {
+        AlertDialog.Builder(this)
+            .setMessage("Restart?")
+            .setPositiveButton(getString(R.string.yes)) { _, _ -> // dialog, whichButton are never used
+                resetTimers()
+                greyOutButtons()
+                top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+                bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+                gameActive=false
+                top_sq.isClickable=true
+                bot_sq.isClickable=true
+            }
+            .setNegativeButton(getString(R.string.no)) { _, _ -> // dialog, whichButton are never used
+                // Closes dialog
+            }
+            .show()
     }
 
     /**
