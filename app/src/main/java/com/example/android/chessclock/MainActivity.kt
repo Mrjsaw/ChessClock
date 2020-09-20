@@ -178,6 +178,9 @@ class MainActivity : AppCompatActivity() {
         top_clock.text = Clock(time_in_seconds_top).updateText()
     }
 
+    /**
+     * Load sharedPreferences
+     */
     private fun loadData() {
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         isNightModeOn = sharedPreferences.getBoolean("BOOLEAN_KEY",false)
