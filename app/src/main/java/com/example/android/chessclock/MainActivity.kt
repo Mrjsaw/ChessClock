@@ -1,5 +1,7 @@
 package com.example.android.chessclock
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.Intent
@@ -56,9 +58,22 @@ class MainActivity : AppCompatActivity() {
         pause_button.setOnClickListener {
             pauseState()
         }
+
+        /**
+         * Show dialog to restart when 'restart_button' pressed
+         */
         restart_button.setOnClickListener {
-            restartTimers()
+            AlertDialog.Builder(this)
+                .setMessage("Restart?")
+                .setPositiveButton(getString(R.string.yes)) { dialog, whichButton ->
+                    restartTimers()
+                }
+                .setNegativeButton(getString(R.string.no)) { dialog, whichButton ->
+                    // closes dialog
+                }
+                .show()
         }
+
         settings_button.setOnClickListener {
             openSettings()
         }
@@ -170,6 +185,21 @@ class MainActivity : AppCompatActivity() {
         if (isNightModeOn){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
+    }
+
+    /**
+     * Show dialog to close when 'Android back button' pressed
+     */
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setMessage("Close?")
+            .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+                super.onBackPressed()
+            }
+            .setNegativeButton(android.R.string.cancel) { dialog, whichButton ->
+
+            }
+            .show()
     }
 }
 
