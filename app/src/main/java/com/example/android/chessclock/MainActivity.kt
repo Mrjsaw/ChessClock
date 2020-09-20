@@ -2,15 +2,14 @@ package com.example.android.chessclock
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.SharedPreferences
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import android.util.Log
 import android.view.WindowManager
-
 import kotlinx.android.synthetic.main.activity_main.*
 
 const val START_TIME = 600 //change top/bot
@@ -28,14 +27,17 @@ class MainActivity : AppCompatActivity() {
     var time_in_seconds_top = START_TIME
     private var isNightModeOn: Boolean = false
 
-    var gameActive = false
+    private var gameActive = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         setContentView(R.layout.activity_main)
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val sharedPrefsEdit:SharedPreferences.Editor=sharedPreferences.edit()
+        val sharedPrefsEdit: SharedPreferences.Editor = sharedPreferences.edit()
 
         /**
          * Set up new session
@@ -81,14 +83,14 @@ class MainActivity : AppCompatActivity() {
          * If game is active start clock from opponent, else start own clock
          */
         top_sq.setOnClickListener {
-            if(gameActive) {
+            if (gameActive) {
                 when (clockState) {
                     ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
                     ClockStates.CLOCK_END -> resetTimers()
                     ClockStates.CLOCK_PAUSE -> startTimerBot(time_in_seconds_bot)
                 }
-            }else{
-                when(clockState) {
+            } else {
+                when (clockState) {
                     ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
                     ClockStates.CLOCK_END -> resetTimers()
                     ClockStates.CLOCK_PAUSE -> startTimerBot(time_in_seconds_top)
@@ -100,13 +102,13 @@ class MainActivity : AppCompatActivity() {
          * If game is active start clock from opponent, else start own clock
          */
         bot_sq.setOnClickListener {
-            if(gameActive) {
+            if (gameActive) {
                 when (clockState) {
                     ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
                     ClockStates.CLOCK_END -> resetTimers()
                     ClockStates.CLOCK_PAUSE -> startTimerBot(time_in_seconds_top)
                 }
-            }else{
+            } else {
                 when (clockState) {
                     ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
                     ClockStates.CLOCK_END -> resetTimers()
@@ -127,9 +129,9 @@ class MainActivity : AppCompatActivity() {
                 greyOutButtons()
                 top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
                 bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
-                gameActive=false
-                top_sq.isClickable=true
-                bot_sq.isClickable=true
+                gameActive = false
+                top_sq.isClickable = true
+                bot_sq.isClickable = true
             }
             .setNegativeButton(getString(R.string.no)) { _, _ -> // dialog, whichButton are never used
                 // Closes dialog
@@ -141,10 +143,10 @@ class MainActivity : AppCompatActivity() {
      * Grey out restart and pause buttons
      */
     private fun greyOutButtons() {
-        restart_button.alpha = .5f;
-        restart_button.isClickable = false;
-        pause_button.alpha = .5f;
-        pause_button.isClickable = false;
+        restart_button.alpha = .5f
+        restart_button.isClickable = false
+        pause_button.alpha = .5f
+        pause_button.isClickable = false
     }
 
     /**
@@ -153,11 +155,13 @@ class MainActivity : AppCompatActivity() {
     private fun pauseState() {
         pauseTimerTop()
         pauseTimerBot()
-        top_sq.isClickable=true
-        bot_sq.isClickable=true
+        top_sq.isClickable = true
+        bot_sq.isClickable = true
         top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
         bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
-        gameActive=false
+        gameActive = false
+        pause_button.alpha = .5f
+        pause_button.isClickable = false
     }
 
     /**
@@ -185,6 +189,7 @@ class MainActivity : AppCompatActivity() {
             top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
         }
     }
+
     private fun pauseTimerTop() {
         if (this::countDownTimerTop.isInitialized) {
             countDownTimerTop.cancel()
@@ -199,7 +204,7 @@ class MainActivity : AppCompatActivity() {
      * else just start timer
      */
     private fun startTimerBot(seconds: Int) {
-        if(gameActive) {
+        if (gameActive) {
             countDownTimerBot = object : CountDownTimer(seconds * 1000L, 1000) {
                 override fun onFinish() {
                     Log.d("T", "Bottom timer has ended!")
@@ -217,7 +222,7 @@ class MainActivity : AppCompatActivity() {
             bot_sq.isClickable = true
             pauseTimerTop()
             clockState = ClockStates.CLOCK_START
-        }else{
+        } else {
             bot_sq.setBackgroundColor(getColor(R.color.colorPrimary))
 
             gameActive = true
@@ -248,8 +253,9 @@ class MainActivity : AppCompatActivity() {
      * If game hasn't started light up player clock when starting it and make buttons active,
      * else just start timer
      */
+
     private fun startTimerTop(seconds: Int) {
-        if(gameActive) {
+        if (gameActive) {
             countDownTimerTop = object : CountDownTimer(seconds * 1000L, 1000) {
                 override fun onFinish() {
                     Log.d("T", "Top timer has ended!")
@@ -263,15 +269,11 @@ class MainActivity : AppCompatActivity() {
             }
             countDownTimerTop.start()
 
-            // Switch primary colors only when top goes first
-            top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
-            bot_sq.setBackgroundColor(getColor(R.color.colorPrimary))
-
             top_sq.isClickable = true
             bot_sq.isClickable = false
             pauseTimerBot()
             clockState = ClockStates.CLOCK_START
-        }else{
+        } else {
             top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
 
             gameActive = true
@@ -295,19 +297,17 @@ class MainActivity : AppCompatActivity() {
             bot_sq.isClickable = false
             pauseTimerBot()
             clockState = ClockStates.CLOCK_START
-
         }
-
     }
 
     /**
      * Make buttons active
      */
     private fun makeButtonsActive() {
-        restart_button.alpha = 1f;
-        restart_button.isClickable = true;
-        pause_button.alpha = 1f;
-        pause_button.isClickable = true;
+        restart_button.alpha = 1f
+        restart_button.isClickable = true
+        pause_button.alpha = 1f
+        pause_button.isClickable = true
     }
 
     /**
@@ -324,6 +324,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateTextUIBot() {
         bot_clock.text = Clock(time_in_seconds_bot).updateText()
     }
+
     private fun updateTextUITop() {
         top_clock.text = Clock(time_in_seconds_top).updateText()
     }
@@ -333,9 +334,9 @@ class MainActivity : AppCompatActivity() {
      */
     private fun loadData() {
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        isNightModeOn = sharedPreferences.getBoolean("BOOLEAN_KEY",false)
+        isNightModeOn = sharedPreferences.getBoolean("BOOLEAN_KEY", false)
 
-        if (isNightModeOn){
+        if (isNightModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
     }
