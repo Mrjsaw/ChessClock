@@ -1,8 +1,7 @@
 package com.example.android.chessclock
 
 
-class Clock(timeSeconds : Long) {
-    val timeSeconds = timeSeconds
+class Clock(private val timeSeconds: Int) {
 
     fun updateText(): String {
         if (timeSeconds < 60) {
@@ -13,7 +12,7 @@ class Clock(timeSeconds : Long) {
         }
         else if (timeSeconds <= 3600) {
             val mins = timeSeconds/60
-            val secs = timeSeconds - (mins * 60)
+            val secs = timeSeconds%60
             var minutes = mins.toString()
             var seconds = secs.toString()
             if (mins < 10) {

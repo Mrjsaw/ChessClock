@@ -1,10 +1,13 @@
 package com.example.android.chessclock
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.support.v7.app.AppCompatDelegate
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
@@ -24,12 +27,33 @@ class MainActivity : AppCompatActivity() {
     var clockState: ClockStates = ClockStates.CLOCK_START
     var time_in_seconds_bot = START_TIME
     var time_in_seconds_top = START_TIME
+    private var isNightModeOn: Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_main)
+        val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val sharedPrefsEdit:SharedPreferences.Editor=sharedPreferences.edit()
+
+        loadData()
+
+        action_theme.setOnClickListener(View.OnClickListener{
+            if (isNightModeOn){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                sharedPrefsEdit.putBoolean("BOOLEAN_KEY",false)
+                sharedPrefsEdit.apply()
+                //TODO: redraw fragment without destroying somehow instead of using recreate
+                recreate()
+
+            }else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                sharedPrefsEdit.putBoolean("BOOLEAN_KEY",true)
+                sharedPrefsEdit.apply()
+                recreate()
+            }
+        })
         pause_button.setOnClickListener {
             pauseState()
         }
@@ -88,6 +112,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     private fun startTimerBot(seconds: Long) {
         countDownTimerBot = object : CountDownTimer(seconds*1000L, 1000) {
             override fun onFinish() {
@@ -96,7 +121,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTick(p0: Long) {
-                time_in_seconds_bot = p0 / 1000L
+                time_in_seconds_bot = (p0 / 1000L).toInt()
                 updateTextUIBot()
             }
         }
@@ -119,7 +144,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTick(p0: Long) {
-                time_in_seconds_top = p0 / 1000L
+                time_in_seconds_top = (p0 / 1000L).toInt()
                 updateTextUITop()
             }
         }
@@ -137,6 +162,15 @@ class MainActivity : AppCompatActivity() {
     }
     private fun updateTextUITop() {
         top_clock.text = Clock(time_in_seconds_top).updateText()
+    }
+
+    private fun loadData() {
+        val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        isNightModeOn = sharedPreferences.getBoolean("BOOLEAN_KEY",false)
+
+        if (isNightModeOn){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
     }
 }
 

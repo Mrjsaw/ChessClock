@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@android:color/white</color>
+    <color name="colorPrimaryDark">@android:color/white</color>
+    <color name="colorAccent">@android:color/holo_blue_light</color>
+
+    <color name="bulbColor">@android:color/black</color>
+    <color name="settingsBar">#7A7979</color>
+
+    <color name="topClockText">#686464</color>
+    <color name="bottomClockText">#323131</color>
+</resources>
