@@ -15,12 +15,12 @@ import android.view.WindowManager
 
 import kotlinx.android.synthetic.main.activity_main.*
 
-const val START_TIME = 900 //change top/bot
+const val START_TIME = 600 //change top/bot
 const val INCREMENT = 5 //change top/bot
 
 class MainActivity : AppCompatActivity() {
 
-    enum class ClockStates { CLOCK_START, CLOCK_END }
+    enum class ClockStates { CLOCK_START, CLOCK_END, CLOCK_PAUSE }
 
     private lateinit var countDownTimerBot: CountDownTimer
     private lateinit var countDownTimerTop: CountDownTimer
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         val sharedPrefsEdit:SharedPreferences.Editor=sharedPreferences.edit()
 
         loadData()
-
+        /*
         action_theme.setOnClickListener(View.OnClickListener{
             if (isNightModeOn){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 sharedPrefsEdit.apply()
                 recreate()
             }
-        })
+        })*/
         pause_button.setOnClickListener {
             pauseState()
         }
@@ -82,6 +82,7 @@ class MainActivity : AppCompatActivity() {
             when(clockState) {
                 ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
                 ClockStates.CLOCK_END -> restartTimers()
+                ClockStates.CLOCK_PAUSE -> startTimerBot(time_in_seconds_bot)
             }
 
         }
@@ -90,6 +91,7 @@ class MainActivity : AppCompatActivity() {
             when(clockState) {
                 ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
                 ClockStates.CLOCK_END -> restartTimers()
+                ClockStates.CLOCK_PAUSE -> startTimerBot(time_in_seconds_top)
             }
         }
 
@@ -119,8 +121,8 @@ class MainActivity : AppCompatActivity() {
             countDownTimerBot.cancel()
 
             // Switch primary colors when turn ends
-            top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
-            bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+            bot_sq.setBackgroundColor(getColor(R.color.colorAccent))
+            bot_clock.setTextColor(getColor(R.color.black))
         }
     }
 
@@ -129,8 +131,8 @@ class MainActivity : AppCompatActivity() {
             countDownTimerTop.cancel()
 
             // Switch primary colors when turn ends
-            top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
-            bot_sq.setBackgroundColor(getColor(R.color.colorPrimary))
+            top_sq.setBackgroundColor(getColor(R.color.colorAccent))
+            top_clock.setTextColor(getColor(R.color.black))
         }
     }
 
@@ -149,6 +151,8 @@ class MainActivity : AppCompatActivity() {
         }
         countDownTimerBot.start()
 
+        bot_sq.setBackgroundColor(getColor(R.color.colorPrimary))
+        bot_clock.setTextColor(getColor(R.color.white))
         top_sq.isClickable=false
         bot_sq.isClickable=true
         pauseTimerTop()
@@ -174,7 +178,7 @@ class MainActivity : AppCompatActivity() {
 
         // Switch primary colors only when top goes first
         top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
-        bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+        top_clock.setTextColor(getColor(R.color.white))
 
         top_sq.isClickable=true
         bot_sq.isClickable=false
