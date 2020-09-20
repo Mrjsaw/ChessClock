@@ -9,8 +9,10 @@ import android.os.CountDownTimer
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_themes.*
 
 const val START_TIME = 600 //change top/bot
 const val INCREMENT = 5 //change top/bot
@@ -45,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         loadData()
         greyOutButtons()
 
-        /*
+
         /**
          * Switch between light and dark theme
          */
@@ -64,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                 recreate()
             }
         })
-        */
+
 
         /**
          * Button listeners
