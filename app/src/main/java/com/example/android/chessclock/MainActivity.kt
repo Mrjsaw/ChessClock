@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         /*
         /**
-         * Load theme saved in sharedPreferences
+         * Switch between light and dark theme
          */
         action_theme.setOnClickListener(View.OnClickListener{
             if (isNightModeOn){
