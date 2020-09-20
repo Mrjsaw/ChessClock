@@ -65,11 +65,11 @@ class MainActivity : AppCompatActivity() {
         restart_button.setOnClickListener {
             AlertDialog.Builder(this)
                 .setMessage("Restart?")
-                .setPositiveButton(getString(R.string.yes)) { dialog, whichButton ->
+                .setPositiveButton(getString(R.string.yes)) { _, _ -> // dialog, whichButton are never used
                     restartTimers()
                 }
-                .setNegativeButton(getString(R.string.no)) { dialog, whichButton ->
-                    // closes dialog
+                .setNegativeButton(getString(R.string.no)) { _, _ -> // dialog, whichButton are never used
+                    // Closes dialog
                 }
                 .show()
         }
@@ -193,11 +193,11 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         AlertDialog.Builder(this)
             .setMessage("Close?")
-            .setPositiveButton(android.R.string.ok) { dialog, whichButton ->
+            .setPositiveButton(android.R.string.ok) { _, _ -> // dialog, whichButton are never used
                 super.onBackPressed()
             }
-            .setNegativeButton(android.R.string.cancel) { dialog, whichButton ->
-
+            .setNegativeButton(android.R.string.cancel) { _, _ -> // dialog, whichButton are never used
+                // Closes dialog
             }
             .show()
     }
