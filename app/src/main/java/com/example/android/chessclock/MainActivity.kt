@@ -37,11 +37,16 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val sharedPrefsEdit:SharedPreferences.Editor=sharedPreferences.edit()
 
+        /**
+         * Set up new session
+         */
         loadData()
-
         greyOutButtons()
 
         /*
+        /**
+         * Load theme saved in sharedPreferences
+         */
         action_theme.setOnClickListener(View.OnClickListener{
             if (isNightModeOn){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -56,8 +61,12 @@ class MainActivity : AppCompatActivity() {
                 sharedPrefsEdit.apply()
                 recreate()
             }
-        })*/
+        })
+        */
 
+        /**
+         * Pause button listener
+         */
         pause_button.setOnClickListener {
             pauseState()
         }
@@ -144,6 +153,9 @@ class MainActivity : AppCompatActivity() {
         gameActive=false
     }
 
+    /**
+     * Set timers to new values ???
+     */
     private fun resetTimers() {
         //add pop-up Are You Sure? [YES/NO]
         pauseTimerTop()
