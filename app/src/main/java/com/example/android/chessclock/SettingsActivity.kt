@@ -1,5 +1,6 @@
 package com.example.android.chessclock
 
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,6 +17,8 @@ class SettingsActivity : AppCompatActivity() {
         myPagerAdapter = MyFragmentPagerAdapter(supportFragmentManager)
         viewPager.adapter = myPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
+        /*tabLayout.setTabTextColors(R.color.colorPrimary,R.color.colorAccent)
+        tabLayout.setSelectedTabIndicator(R.color.colorAccent)*/
         tabLayout.getTabAt(0)?.text = "Game"
         tabLayout.getTabAt(1)?.text = "Theme"
     }

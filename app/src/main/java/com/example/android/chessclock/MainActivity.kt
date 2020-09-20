@@ -1,6 +1,7 @@
 package com.example.android.chessclock
 
 import android.content.Intent
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -73,7 +74,6 @@ class MainActivity : AppCompatActivity() {
         updateTextUIBot()
         updateTextUITop()
         clockState = ClockStates.CLOCK_START
-
     }
 
     private fun pauseTimerBot() {
@@ -101,7 +101,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         countDownTimerBot.start()
-
+        top_sq.setBackgroundColor(getColor(R.color.colorAccent))
         top_sq.isClickable=false
         bot_sq.isClickable=true
         pauseTimerTop()
