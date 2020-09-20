@@ -95,7 +95,8 @@
             android:layout_margin="10dp"
             android:layout_weight="5"
             android:background="@color/colorPrimaryDark"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
         <TextView
                 android:id="@+id/bot_clock"
