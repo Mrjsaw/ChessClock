@@ -131,12 +131,17 @@ class MainActivity : AppCompatActivity() {
         pause_button.isClickable = false;
     }
 
-
+    /**
+     * Pause game and set up for game to start with whichever player is preferred to start again
+     */
     private fun pauseState() {
         pauseTimerTop()
         pauseTimerBot()
         top_sq.isClickable=true
         bot_sq.isClickable=true
+        top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+        bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+        gameActive=false
     }
 
     private fun resetTimers() {
