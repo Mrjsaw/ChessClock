@@ -80,6 +80,9 @@ class MainActivity : AppCompatActivity() {
                 .setPositiveButton(getString(R.string.yes)) { _, _ -> // dialog, whichButton are never used
                     resetTimers()
                     greyOutButtons()
+                    top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+                    bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+                    gameActive=false
                 }
                 .setNegativeButton(getString(R.string.no)) { _, _ -> // dialog, whichButton are never used
                     // Closes dialog
