@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -21,13 +22,12 @@
                 android:id="@+id/top_clock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
+                android:layout_gravity="center"
                 android:layout_marginStart="50dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/digital"
                 android:rotation="180"
                 android:text="15:00"
-                android:textAlignment="center"
                 android:textColor="@color/topClockText"
                 android:textSize="150dp" />
     </LinearLayout>
@@ -46,28 +46,23 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/settings_button"
-                android:background="@drawable/ic_settings_black_24dp">
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/settings_button"
+                    android:background="@drawable/ic_settings_black_24dp">
 
-        </Button>
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/pause_button"
-                android:background="@drawable/ic_pause_black_24dp">
+            </Button>
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/pause_button"
+                    android:background="@drawable/ic_pause_black_24dp">
 
-        </Button>
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/restart_button"
-                android:background="@drawable/ic_replay_black_24dp">
+            </Button>
+
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,14 +93,12 @@
                 android:id="@+id/bot_clock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
                 android:layout_marginEnd="50dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/digital"
                 android:text="15:00"
-                android:textAlignment="center"
+                android:layout_gravity="center"
                 android:textColor="@color/bottomClockText"
                 android:textSize="150dp" />
     </LinearLayout>
-
 </LinearLayout>
