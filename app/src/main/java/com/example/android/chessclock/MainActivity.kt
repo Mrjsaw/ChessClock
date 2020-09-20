@@ -117,12 +117,20 @@ class MainActivity : AppCompatActivity() {
     private fun pauseTimerBot() {
         if (this::countDownTimerBot.isInitialized) {
             countDownTimerBot.cancel()
+
+            // Switch primary colors when turn ends
+            top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
+            bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
         }
     }
 
     private fun pauseTimerTop() {
         if (this::countDownTimerTop.isInitialized) {
             countDownTimerTop.cancel()
+
+            // Switch primary colors when turn ends
+            top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+            bot_sq.setBackgroundColor(getColor(R.color.colorPrimary))
         }
     }
 
@@ -140,7 +148,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         countDownTimerBot.start()
-        top_sq.setBackgroundColor(getColor(R.color.colorAccent))
+
         top_sq.isClickable=false
         bot_sq.isClickable=true
         pauseTimerTop()
@@ -163,6 +171,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
         countDownTimerTop.start()
+
+        // Switch primary colors only when top goes first
+        top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
+        bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
 
         top_sq.isClickable=true
         bot_sq.isClickable=false
