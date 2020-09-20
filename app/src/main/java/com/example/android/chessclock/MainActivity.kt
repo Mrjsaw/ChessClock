@@ -191,6 +191,8 @@ class MainActivity : AppCompatActivity() {
         }
         bot_sq.setBackgroundColor(getColor(R.color.colorPrimary))
         top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+        bot_clock.setTextColor(getColor(R.color.white))
+        top_clock.setTextColor(getColor(R.color.black))
         countDownTimerBot.start()
         pause_button.visibility = View.VISIBLE
         top_sq.isClickable = false
@@ -219,6 +221,8 @@ class MainActivity : AppCompatActivity() {
 
             // Switch primary colors only when top goes first
             top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
+            top_clock.setTextColor(getColor(R.color.white))
+            bot_clock.setTextColor(getColor(R.color.black))
             bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
             pause_button.visibility = View.VISIBLE
             top_sq.isClickable = true
