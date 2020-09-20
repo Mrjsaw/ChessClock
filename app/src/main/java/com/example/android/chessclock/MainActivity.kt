@@ -3,7 +3,6 @@ package com.example.android.chessclock
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.Intent
-import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -14,8 +13,8 @@ import android.view.WindowManager
 
 import kotlinx.android.synthetic.main.activity_main.*
 
-const val START_TIME = 900L //change top/bot
-const val INCREMENT = 5L //change top/bot
+const val START_TIME = 900 //change top/bot
+const val INCREMENT = 5 //change top/bot
 
 class MainActivity : AppCompatActivity() {
 
@@ -113,7 +112,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun startTimerBot(seconds: Long) {
+    private fun startTimerBot(seconds: Int) {
         countDownTimerBot = object : CountDownTimer(seconds*1000L, 1000) {
             override fun onFinish() {
                 Log.d("T","Bottom timer has ended!")
@@ -136,7 +135,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, SettingsActivity::class.java)
         startActivity(intent)
     }
-    private fun startTimerTop(seconds: Long) {
+    private fun startTimerTop(seconds: Int) {
         countDownTimerTop = object: CountDownTimer(seconds*1000L,1000) {
             override fun onFinish() {
                 Log.d("T","Top timer has ended!")
