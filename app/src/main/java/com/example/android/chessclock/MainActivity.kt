@@ -1,5 +1,7 @@
 package com.example.android.chessclock
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.Intent
@@ -56,9 +58,22 @@ class MainActivity : AppCompatActivity() {
         pause_button.setOnClickListener {
             pauseState()
         }
+
+        /**
+         * Show dialog to restart when 'restart_button' pressed
+         */
         restart_button.setOnClickListener {
-            restartTimers()
+            AlertDialog.Builder(this)
+                .setMessage("Restart?")
+                .setPositiveButton(getString(R.string.yes)) { _, _ -> // dialog, whichButton are never used
+                    restartTimers()
+                }
+                .setNegativeButton(getString(R.string.no)) { _, _ -> // dialog, whichButton are never used
+                    // Closes dialog
+                }
+                .show()
         }
+
         settings_button.setOnClickListener {
             openSettings()
         }
@@ -102,12 +117,20 @@ class MainActivity : AppCompatActivity() {
     private fun pauseTimerBot() {
         if (this::countDownTimerBot.isInitialized) {
             countDownTimerBot.cancel()
+
+            // Switch primary colors when turn ends
+            top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
+            bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
         }
     }
 
     private fun pauseTimerTop() {
         if (this::countDownTimerTop.isInitialized) {
             countDownTimerTop.cancel()
+
+            // Switch primary colors when turn ends
+            top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+            bot_sq.setBackgroundColor(getColor(R.color.colorPrimary))
         }
     }
 
@@ -125,7 +148,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         countDownTimerBot.start()
-        top_sq.setBackgroundColor(getColor(R.color.colorAccent))
+
         top_sq.isClickable=false
         bot_sq.isClickable=true
         pauseTimerTop()
@@ -149,6 +172,10 @@ class MainActivity : AppCompatActivity() {
         }
         countDownTimerTop.start()
 
+        // Switch primary colors only when top goes first
+        top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
+        bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+
         top_sq.isClickable=true
         bot_sq.isClickable=false
         pauseTimerBot()
@@ -163,6 +190,9 @@ class MainActivity : AppCompatActivity() {
         top_clock.text = Clock(time_in_seconds_top).updateText()
     }
 
+    /**
+     * Load sharedPreferences
+     */
     private fun loadData() {
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         isNightModeOn = sharedPreferences.getBoolean("BOOLEAN_KEY",false)
@@ -170,6 +200,21 @@ class MainActivity : AppCompatActivity() {
         if (isNightModeOn){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
+    }
+
+    /**
+     * Show dialog to close when 'Android back button' pressed
+     */
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setMessage("Close?")
+            .setPositiveButton(android.R.string.ok) { _, _ -> // dialog, whichButton are never used
+                super.onBackPressed()
+            }
+            .setNegativeButton(android.R.string.cancel) { _, _ -> // dialog, whichButton are never used
+                // Closes dialog
+            }
+            .show()
     }
 }
 
