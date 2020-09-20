@@ -39,6 +39,9 @@ class MainActivity : AppCompatActivity() {
         val sharedPrefsEdit:SharedPreferences.Editor=sharedPreferences.edit()
 
         loadData()
+
+        greyOutButtons()
+
         /*
         action_theme.setOnClickListener(View.OnClickListener{
             if (isNightModeOn){
@@ -98,6 +101,17 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Grey out restart and pause buttons
+     */
+    private fun greyOutButtons() {
+        restart_button.alpha = .5f;
+        restart_button.isClickable = false;
+        pause_button.alpha = .5f;
+        pause_button.isClickable = false;
+    }
+
+
     private fun pauseState() {
         pauseTimerTop()
         pauseTimerBot()
@@ -151,13 +165,25 @@ class MainActivity : AppCompatActivity() {
         }
         countDownTimerBot.start()
 
+        makeButtonsActive()
+
+        // ???
         bot_sq.setBackgroundColor(getColor(R.color.colorPrimary))
         bot_clock.setTextColor(getColor(R.color.white))
+
         top_sq.isClickable=false
         bot_sq.isClickable=true
         pauseTimerTop()
         clockState = ClockStates.CLOCK_START
     }
+
+    private fun makeButtonsActive() {
+        restart_button.alpha = 1f;
+        restart_button.isClickable = true;
+        pause_button.alpha = 1f;
+        pause_button.isClickable = true;
+    }
+
     private fun openSettings() {
         val intent = Intent(this, SettingsActivity::class.java)
         startActivity(intent)
@@ -175,6 +201,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
         countDownTimerTop.start()
+
+        makeButtonsActive()
 
         // Switch primary colors only when top goes first
         top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
