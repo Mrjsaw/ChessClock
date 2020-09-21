@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/settingsBar"
+        android:background="@color/colorDashboard"
         android:orientation="vertical"
         tools:context=".MainActivity">
 
@@ -14,7 +14,7 @@
             android:layout_height="0dp"
             android:layout_margin="10dp"
             android:layout_weight="5"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorInactive"
             android:orientation="horizontal">
 
         <android.support.constraint.ConstraintLayout
@@ -86,7 +86,6 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:id="@+id/settings_button"
-                    android:textColor="@color/buttonColor"
                     android:background="@drawable/ic_settings_black_24dp">
 
             </Button>
@@ -128,7 +127,7 @@
             android:layout_height="0dp"
             android:layout_margin="10dp"
             android:layout_weight="5"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorInactive"
             android:orientation="horizontal"
             >
 
