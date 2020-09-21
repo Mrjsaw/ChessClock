@@ -14,6 +14,7 @@ import android.view.View
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_themes.*
+import java.io.Console
 
 const val START_TIME = 600 //change top/bot
 const val INCREMENT = 5 //change top/bot
@@ -112,6 +113,8 @@ class MainActivity : AppCompatActivity() {
                     bot_clock.setTextColor(getColor(R.color.colorInactiveText))
                     top_sq.isClickable = true
                     bot_sq.isClickable = true
+                    clockState = null
+                    pause_button.visibility = View.GONE
                 }
                 .setNegativeButton(getString(R.string.no)) { _, _ -> // dialog, whichButton are never used
                     // Closes dialog
@@ -147,7 +150,7 @@ class MainActivity : AppCompatActivity() {
         time_in_seconds_top = START_TIME
         updateTextUIBot()
         updateTextUITop()
-        clockState = ClockStates.CLOCK_START
+//        clockState = ClockStates.CLOCK_START
     }
 
     /**
