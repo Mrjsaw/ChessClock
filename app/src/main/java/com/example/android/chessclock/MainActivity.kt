@@ -126,7 +126,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     /**
      * Pause game and set up for game to start with whichever player is preferred to start again
      */
@@ -251,7 +250,6 @@ class MainActivity : AppCompatActivity() {
         pause_button.visibility = View.VISIBLE
     }
 
-
     /**
      * Open Settings menu and pause MainActivity
      */
@@ -299,4 +297,3 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 }
-
