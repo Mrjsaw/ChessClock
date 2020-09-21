@@ -29,8 +29,6 @@ class MainActivity : AppCompatActivity() {
     var time_in_seconds_top = START_TIME
     private var isNightModeOn: Boolean = false
 
-    private var gameActive = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
@@ -64,34 +62,25 @@ class MainActivity : AppCompatActivity() {
          * If game is active start clock from opponent, else start own clock
          */
         top_sq.setOnClickListener {
-            if (gameActive) {
-                when (clockState) {
-                    ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
-                    ClockStates.CLOCK_END -> resetTimers()
-                }
-            } else {
-                when (clockState) {
-                    ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
-                    ClockStates.CLOCK_END -> resetTimers()
-                }
+
+            when (clockState) {
+                ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
+                ClockStates.CLOCK_END -> resetTimers()
             }
+
         }
 
         /**
          * If game is active start clock from opponent, else start own clock
          */
         bot_sq.setOnClickListener {
-            if (gameActive) {
-                when (clockState) {
-                    ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
-                    ClockStates.CLOCK_END -> resetTimers()
-                }
-            } else {
-                when (clockState) {
-                    ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
-                    ClockStates.CLOCK_END -> resetTimers()
-                }
+
+            when (clockState) {
+                ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
+                ClockStates.CLOCK_END -> resetTimers()
             }
+
+
         }
     }
 
@@ -106,7 +95,6 @@ class MainActivity : AppCompatActivity() {
                 greyOutButtons()
                 top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
                 bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
-                gameActive = false
                 top_sq.isClickable = true
                 bot_sq.isClickable = true
             }
@@ -136,7 +124,6 @@ class MainActivity : AppCompatActivity() {
         bot_sq.isClickable = true
         top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
         bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
-        gameActive = false
         pause_button.alpha = .5f
         pause_button.isClickable = false
     }
@@ -181,49 +168,26 @@ class MainActivity : AppCompatActivity() {
      * else just start timer
      */
     private fun startTimerBot(seconds: Int) {
-        if (gameActive) {
-            countDownTimerBot = object : CountDownTimer(seconds * 1000L, 1000) {
-                override fun onFinish() {
-                    Log.d("T", "Bottom timer has ended!")
-                    clockState = ClockStates.CLOCK_END
-                }
+        bot_sq.setBackgroundColor(getColor(R.color.colorPrimary))
 
-                override fun onTick(p0: Long) {
-                    time_in_seconds_bot = (p0 / 1000L).toInt()
-                    updateTextUIBot()
-                }
+        countDownTimerBot = object : CountDownTimer(seconds * 1000L, 1000) {
+            override fun onFinish() {
+                Log.d("T", "Bottom timer has ended!")
+                clockState = ClockStates.CLOCK_END
             }
-            countDownTimerBot.start()
-
-            top_sq.isClickable = false
-            bot_sq.isClickable = true
-            pauseTimerTop()
-            clockState = ClockStates.CLOCK_START
-        } else {
-            bot_sq.setBackgroundColor(getColor(R.color.colorPrimary))
-
-            gameActive = true
-
-            countDownTimerBot = object : CountDownTimer(seconds * 1000L, 1000) {
-                override fun onFinish() {
-                    Log.d("T", "Bottom timer has ended!")
-                    clockState = ClockStates.CLOCK_END
-                }
-
-                override fun onTick(p0: Long) {
-                    time_in_seconds_bot = (p0 / 1000L).toInt()
-                    updateTextUIBot()
-                }
+            override fun onTick(p0: Long) {
+                time_in_seconds_bot = (p0 / 1000L).toInt()
+                updateTextUIBot()
             }
-            countDownTimerBot.start()
-
-            makeButtonsActive()
-
-            top_sq.isClickable = false
-            bot_sq.isClickable = true
-            pauseTimerTop()
-            clockState = ClockStates.CLOCK_START
         }
+        countDownTimerBot.start()
+
+        makeButtonsActive()
+
+        top_sq.isClickable = false
+        bot_sq.isClickable = true
+        pauseTimerTop()
+        clockState = ClockStates.CLOCK_START
     }
 
     /**
@@ -232,49 +196,26 @@ class MainActivity : AppCompatActivity() {
      */
 
     private fun startTimerTop(seconds: Int) {
-        if (gameActive) {
-            countDownTimerTop = object : CountDownTimer(seconds * 1000L, 1000) {
-                override fun onFinish() {
-                    Log.d("T", "Top timer has ended!")
-                    clockState = ClockStates.CLOCK_END
-                }
+        top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
 
-                override fun onTick(p0: Long) {
-                    time_in_seconds_top = (p0 / 1000L).toInt()
-                    updateTextUITop()
-                }
+        countDownTimerTop = object : CountDownTimer(seconds * 1000L, 1000) {
+            override fun onFinish() {
+                Log.d("T", "Top timer has ended!")
+                clockState = ClockStates.CLOCK_END
             }
-            countDownTimerTop.start()
-
-            top_sq.isClickable = true
-            bot_sq.isClickable = false
-            pauseTimerBot()
-            clockState = ClockStates.CLOCK_START
-        } else {
-            top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
-
-            gameActive = true
-
-            countDownTimerTop = object : CountDownTimer(seconds * 1000L, 1000) {
-                override fun onFinish() {
-                    Log.d("T", "Top timer has ended!")
-                    clockState = ClockStates.CLOCK_END
-                }
-
-                override fun onTick(p0: Long) {
-                    time_in_seconds_top = (p0 / 1000L).toInt()
-                    updateTextUITop()
-                }
+            override fun onTick(p0: Long) {
+                time_in_seconds_top = (p0 / 1000L).toInt()
+                updateTextUITop()
             }
-            countDownTimerTop.start()
-
-            makeButtonsActive()
-
-            top_sq.isClickable = true
-            bot_sq.isClickable = false
-            pauseTimerBot()
-            clockState = ClockStates.CLOCK_START
         }
+        countDownTimerTop.start()
+
+        makeButtonsActive()
+
+        top_sq.isClickable = true
+        bot_sq.isClickable = false
+        pauseTimerBot()
+        clockState = ClockStates.CLOCK_START
     }
 
     /**
