@@ -26,7 +26,7 @@
                 android:rotation="180"
                 android:text="15:00"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/topClockText"
                 android:textSize="130sp" />
     </LinearLayout>
 
@@ -105,7 +105,7 @@
                 android:layout_weight="1"
                 android:text="15:00"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/bottomClockText"
                 android:textSize="130sp" />
     </LinearLayout>
 </LinearLayout>

@@ -9,5 +9,5 @@
     <color name="settingsBar">#201F1F</color>
 
     <color name="topClockText">#ededed</color>
-    <color name="bottomClockText">@android:color/secondary_text_light</color>
+    <color name="bottomClockText">#ededed</color>
 </resources>
