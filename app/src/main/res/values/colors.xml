@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorActive">#AD98C2</color>
-    <color name="colorInactive">#989896</color>
+    <color name="colorActive">#D1AA41</color>
+    <color name="colorInactive">#D1D1D1</color>
     <color name="colorActiveText">#FFF</color>
-    <color name="colorInactiveText">#000</color>
+    <color name="colorInactiveText">#464646</color>
     <color name="colorDashboard">#201F1F</color>
 
-    <color name="topClockText">#ededed</color>
-    <color name="topOffClockText">#FF7BDF</color>
-    <color name="bottomClockText">#ededed</color>
-    <color name="bottomOffClockText">#989896</color>
+    <color name="topClockText">#000</color>
+    <color name="topOffClockText">#fff</color>
+    <color name="bottomClockText">#000</color>
+    <color name="bottomOffClockText">#fff</color>
 </resources>
