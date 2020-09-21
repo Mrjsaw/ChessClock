@@ -27,26 +27,36 @@ class ThemesFragment : Fragment() {
         val sharedPrefsEdit: SharedPreferences.Editor? = sharedPreferences?.edit()
 
         /**
-         * Set up fragment
+         * Load sharedPreferenced & set up fragment
          */
-        loadData()
+        val btn = view.findViewById<View>(R.id.action_theme) as Button
+        if (sharedPreferences != null) {
+            isNightModeOn = sharedPreferences.getBoolean("BOOLEAN_KEY", false)
+            btn.text = resources.getString(R.string.switchDark)
+        }
+        if (isNightModeOn) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            btn.text = resources.getString(R.string.switchLight)
+        }
 
         /**
          * Switch between light and dark theme
          */
-        val btn = view.findViewById<View>(R.id.action_theme) as Button
+
         btn.setOnClickListener {
             if (isNightModeOn) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 sharedPrefsEdit?.putBoolean("BOOLEAN_KEY", false)
                 sharedPrefsEdit?.apply()
                 isNightModeOn = false
+                btn.text = resources.getString(R.string.switchLight)
                 this.activity?.recreate()
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 sharedPrefsEdit?.putBoolean("BOOLEAN_KEY", true)
                 sharedPrefsEdit?.apply()
                 isNightModeOn = true
+                btn.text = resources.getString(R.string.switchDark)
                 this.activity?.recreate()
             }
         }
@@ -58,19 +68,6 @@ class ThemesFragment : Fragment() {
         }
 
         return view
-    }
-
-    /**
-     * Load sharedPreferences
-     */
-    private fun loadData() {
-        val sharedPreferences = this.activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        if (sharedPreferences != null) {
-            isNightModeOn = sharedPreferences.getBoolean("BOOLEAN_KEY", false)
-        }
-        if (isNightModeOn) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
     }
 
     companion object {
