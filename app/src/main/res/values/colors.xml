@@ -9,5 +9,7 @@
     <color name="settingsBar">#201F1F</color>
 
     <color name="topClockText">#ededed</color>
+    <color name="topOffClockText">#00423B</color>
     <color name="bottomClockText">#ededed</color>
+    <color name="bottomOffClockText">#00423B</color>
 </resources>
