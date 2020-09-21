@@ -214,7 +214,6 @@ class MainActivity : AppCompatActivity() {
             // Switch primary colors only when top goes first
             top_sq.setBackgroundColor(getColor(R.color.colorActive))
             top_clock.setTextColor(getColor(R.color.colorActiveText))
-
             bot_clock.setTextColor(getColor(R.color.colorInactiveText))
             bot_sq.setBackgroundColor(getColor(R.color.colorInactive))
             pause_button.visibility = View.VISIBLE
