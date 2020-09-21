@@ -1,11 +1,12 @@
 package com.example.android.chessclock
 
-import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.fragment_settings.*
+import java.util.*
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var myPagerAdapter : MyFragmentPagerAdapter
@@ -24,6 +25,21 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     fun showTimePickerDialog(v: View) {
-        TimePickerFragment().show(supportFragmentManager, "timePicker")
+        val now = Calendar.getInstance()
+        val mTimePicker = MyTimePickerDialog(this,
+            { _, _, minute, seconds ->
+                var secs = seconds.toString()
+                var mins = minute.toString()
+                if(seconds < 10) {
+                    secs = "0$seconds"
+                }
+                if(minute < 10) {
+                    mins = "0$minute"
+                }
+                top_time_s.text = "$mins:$secs"
+
+            }, now[Calendar.HOUR_OF_DAY], 15, 0, true) //verander deze waarden naar sharedPreference values
+        mTimePicker.setTitle("Top Clock")
+        mTimePicker.show()
     }
 }
