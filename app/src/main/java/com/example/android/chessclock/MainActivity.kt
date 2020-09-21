@@ -1,5 +1,6 @@
 package com.example.android.chessclock
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -226,11 +227,12 @@ class MainActivity : AppCompatActivity() {
 
 
         /**
-         * Open Settings menu
+         * Open Settings menu and pause MainActivity
          */
         private fun openSettings() {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
+            this.pauseState()
         }
 
         /**

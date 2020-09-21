@@ -1,17 +1,21 @@
 package com.example.android.chessclock
 
-import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_settings.*
+
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var myPagerAdapter : MyFragmentPagerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         setContentView(R.layout.activity_settings)
 
         myPagerAdapter = MyFragmentPagerAdapter(supportFragmentManager)
@@ -25,5 +29,15 @@ class SettingsActivity : AppCompatActivity() {
 
     fun showTimePickerDialog(v: View) {
         TimePickerFragment().show(supportFragmentManager, "timePicker")
+    }
+
+    /**
+     * Return to MainActivity
+     */
+    @Override
+    override fun onBackPressed() {
+        val openMainActivity = Intent(this, MainActivity::class.java)
+        openMainActivity.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
+        startActivityIfNeeded(openMainActivity, 0);
     }
 }

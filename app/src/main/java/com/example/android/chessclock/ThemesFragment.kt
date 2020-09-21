@@ -61,12 +61,6 @@ class ThemesFragment : Fragment() {
             }
         }
 
-        //TODO: Find a way to redraw activity_main on pressing 'Android return button'
-        @Override
-        fun onBackPressed() {
-
-        }
-
         return view
     }
 
