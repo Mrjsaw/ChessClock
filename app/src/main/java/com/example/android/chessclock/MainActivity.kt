@@ -1,10 +1,10 @@
 package com.example.android.chessclock
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.v7.app.AppCompatActivity
@@ -13,8 +13,6 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_themes.*
-import java.io.Console
 
 const val START_TIME = 600 //change top/bot
 const val INCREMENT = 5 //change top/bot
@@ -102,7 +100,7 @@ class MainActivity : AppCompatActivity() {
      * Show dialog to restart game
      */
     private fun restartGame() {
-        if(clockState == ClockStates.CLOCK_START) {
+        if (clockState == ClockStates.CLOCK_START) {
             AlertDialog.Builder(this)
                 .setMessage("Restart?")
                 .setPositiveButton(getString(R.string.yes)) { _, _ -> // dialog, whichButton are never used
@@ -183,7 +181,7 @@ class MainActivity : AppCompatActivity() {
      * else just start timer
      */
     private fun startTimerBot(seconds: Int) {
-        clockState = ClockStates.CLOCK_START
+        onStartTimer()
 
         countDownTimerBot = object : CountDownTimer(seconds * 1000L, 1000) {
             override fun onFinish() {
@@ -203,12 +201,10 @@ class MainActivity : AppCompatActivity() {
 
         top_sq.setBackgroundColor(getColor(R.color.colorInactive))
         top_clock.setTextColor(getColor(R.color.colorInactiveText))
-        countDownTimerBot.start()
-        pause_button.visibility = View.VISIBLE
+
         top_sq.isClickable = false
         bot_sq.isClickable = true
         pauseTimerTop()
-        clockState = ClockStates.CLOCK_START
     }
 
     /**
@@ -217,7 +213,7 @@ class MainActivity : AppCompatActivity() {
      */
 
     private fun startTimerTop(seconds: Int) {
-        clockState = ClockStates.CLOCK_START
+        onStartTimer()
 
         countDownTimerTop = object : CountDownTimer(seconds * 1000L, 1000) {
             override fun onFinish() {
@@ -238,11 +234,20 @@ class MainActivity : AppCompatActivity() {
 
         bot_clock.setTextColor(getColor(R.color.colorInactiveText))
         bot_sq.setBackgroundColor(getColor(R.color.colorInactive))
-        pause_button.visibility = View.VISIBLE
+
         top_sq.isClickable = true
         bot_sq.isClickable = false
         pauseTimerBot()
+    }
+
+    /**
+     * Code to run at Start of Timers
+     */
+    private fun onStartTimer() {
         clockState = ClockStates.CLOCK_START
+        val endOfTurnSound: MediaPlayer = MediaPlayer.create(this, R.raw.clear_throat)
+        endOfTurnSound.start()
+        pause_button.visibility = View.VISIBLE
     }
 
 
