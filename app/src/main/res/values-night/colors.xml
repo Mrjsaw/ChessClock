@@ -4,9 +4,10 @@
     <color name="colorPrimaryDark">@android:color/darker_gray</color>
     <color name="colorAccent">@android:color/holo_blue_light</color>
 
-    <color name="bulbColor">@android:color/black</color>
     <color name="settingsBar">#7A7979</color>
 
     <color name="topClockText">#686464</color>
+    <color name="topOffClockText">#00423B</color>
     <color name="bottomClockText">#323131</color>
+    <color name="bottomOffClockText">#00423B</color>
 </resources>
