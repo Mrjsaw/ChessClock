@@ -98,7 +98,13 @@ class MainActivity : AppCompatActivity() {
         bot_clock.setTextColor(getColor(R.color.colorInactiveText))
         dashBoard.setBackgroundColor(getColor(R.color.colorDashboard))
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.clear_throat)
+        val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+
+        when (sharedPreferences.getString("TURN_SOUND", null)){
+            "Select a sound..." -> mediaPlayer?.reset()
+            "Clear throat" -> mediaPlayer = MediaPlayer.create(this, R.raw.clear_throat)
+            "Mechanical click" -> mediaPlayer = MediaPlayer.create(this, R.raw.mechanical_switch)
+        }
     }
 
     /**
