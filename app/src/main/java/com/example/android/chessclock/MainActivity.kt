@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     enum class ClockStates { CLOCK_START, CLOCK_END }
 
+
     private lateinit var countDownTimerBot: CountDownTimer
     private lateinit var countDownTimerTop: CountDownTimer
 
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity() {
     var time_in_seconds_bot = START_TIME
     var time_in_seconds_top = START_TIME
     private var isNightModeOn: Boolean = false
+
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +47,7 @@ class MainActivity : AppCompatActivity() {
          */
         loadData()
         pause_button.visibility = View.GONE
+        mediaPlayer = MediaPlayer.create(this, R.raw.clear_throat)
 
         /**
          * Button listeners
@@ -94,6 +98,8 @@ class MainActivity : AppCompatActivity() {
         top_clock.setTextColor(getColor(R.color.colorInactiveText))
         bot_clock.setTextColor(getColor(R.color.colorInactiveText))
         dashBoard.setBackgroundColor(getColor(R.color.colorDashboard))
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.mechanical_switch)
     }
 
     /**
@@ -245,8 +251,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun onStartTimer() {
         clockState = ClockStates.CLOCK_START
-        val endOfTurnSound: MediaPlayer = MediaPlayer.create(this, R.raw.clear_throat)
-        endOfTurnSound.start()
+        mediaPlayer?.start()
         pause_button.visibility = View.VISIBLE
     }
 
