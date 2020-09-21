@@ -145,14 +145,12 @@ class MainActivity : AppCompatActivity() {
      * Set timers to new specified values
      */
     private fun resetTimers() {
-        //add pop-up Are You Sure? [YES/NO]
         pauseTimerTop()
         pauseTimerBot()
         time_in_seconds_bot = START_TIME
         time_in_seconds_top = START_TIME
         updateTextUIBot()
         updateTextUITop()
-//        clockState = ClockStates.CLOCK_START
     }
 
     /**
