@@ -4,13 +4,7 @@ package com.example.android.chessclock
 class Clock(private val timeSeconds: Int) {
 
     fun updateText(): String {
-        if (timeSeconds < 60) {
-            if (timeSeconds < 10) {
-                return "00:0$timeSeconds"
-            }
-            return "00:$timeSeconds"
-        }
-        else if (timeSeconds <= 3600) {
+        if (timeSeconds > 60) {
             val mins = timeSeconds/60
             val secs = timeSeconds%60
             var minutes = mins.toString()
@@ -23,7 +17,11 @@ class Clock(private val timeSeconds: Int) {
             }
             return "$minutes:$seconds"
         }
-        //only support up to 1 hour Time Formats
-        return "-1:-1"
+        else{
+            if (timeSeconds < 10) {
+                return "00:0$timeSeconds"
+            }
+            return "00:$timeSeconds"
+        }
     }
 }
