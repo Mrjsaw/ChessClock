@@ -11,8 +11,8 @@ class MyFragmentPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm){
 
     override fun getItem(p0: Int): Fragment? {
         return when(p0){
-            0 -> SettingsFragment()
-            1 -> ThemesFragment()
+            0 -> SettingsFragment.newInstance()
+            1 -> ThemesFragment.newInstance()
             else -> null
         }
     }
