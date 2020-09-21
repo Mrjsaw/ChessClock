@@ -47,27 +47,6 @@ class MainActivity : AppCompatActivity() {
         loadData()
         greyOutButtons()
 
-
-        /**
-         * Switch between light and dark theme
-         */
-        action_theme.setOnClickListener(View.OnClickListener{
-            if (isNightModeOn){
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                sharedPrefsEdit.putBoolean("BOOLEAN_KEY",false)
-                sharedPrefsEdit.apply()
-                //TODO: redraw fragment without destroying somehow instead of using recreate
-                recreate()
-
-            }else{
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                sharedPrefsEdit.putBoolean("BOOLEAN_KEY",true)
-                sharedPrefsEdit.apply()
-                recreate()
-            }
-        })
-
-
         /**
          * Button listeners
          */
