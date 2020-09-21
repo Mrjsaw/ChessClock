@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity() {
          */
         loadData()
         pause_button.visibility = View.GONE
-        mediaPlayer = MediaPlayer.create(this, R.raw.clear_throat)
 
         /**
          * Button listeners
@@ -89,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Set Theme colors on resuming MainActivity
+     * Set Theme settings on resuming MainActivity
      */
     override fun onResume() {
         super.onResume()
@@ -99,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         bot_clock.setTextColor(getColor(R.color.colorInactiveText))
         dashBoard.setBackgroundColor(getColor(R.color.colorDashboard))
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.mechanical_switch)
+        mediaPlayer = MediaPlayer.create(this, R.raw.clear_throat)
     }
 
     /**
