@@ -129,7 +129,8 @@
             android:layout_margin="10dp"
             android:layout_weight="5"
             android:background="@color/colorPrimaryDark"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"

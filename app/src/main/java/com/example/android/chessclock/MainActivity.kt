@@ -43,17 +43,36 @@ class MainActivity : AppCompatActivity() {
          * Set up new session
          */
         loadData()
-        greyOutButtons()
+        //greyOutButtons()
 
         /**
-         * Button listeners
+         * Pause button listener
          */
         pause_button.setOnClickListener {
             pauseState()
         }
+
+        /**
+         * Show dialog to restart when 'restart_button' pressed
+         */
         restart_button.setOnClickListener {
-            restartGame()
+            AlertDialog.Builder(this)
+                .setMessage("Restart?")
+                .setPositiveButton(getString(R.string.yes)) { _, _ -> // dialog, whichButton are never used
+                    resetTimers()
+                    //greyOutButtons()
+                    top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+                    bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+
+                    top_sq.isClickable=true
+                    bot_sq.isClickable=true
+                }
+                .setNegativeButton(getString(R.string.no)) { _, _ -> // dialog, whichButton are never used
+                    // Closes dialog
+                }
+                .show()
         }
+
         settings_button.setOnClickListener {
             openSettings()
         }
@@ -62,22 +81,22 @@ class MainActivity : AppCompatActivity() {
          * If game is active start clock from opponent, else start own clock
          */
         top_sq.setOnClickListener {
-            when (clockState) {
-                ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
-                ClockStates.CLOCK_END -> resetTimers()
-            }
+
+                when (clockState) {
+                    ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
+                    ClockStates.CLOCK_END -> resetTimers()
+                }
         }
 
         /**
          * If game is active start clock from opponent, else start own clock
          */
         bot_sq.setOnClickListener {
-            when (clockState) {
-                ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
-                ClockStates.CLOCK_END -> resetTimers()
-            }
+                when (clockState) {
+                    ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
+                    ClockStates.CLOCK_END -> resetTimers()
+                }
         }
-    }
 
     /**
      * Show dialog to restart game
@@ -87,7 +106,6 @@ class MainActivity : AppCompatActivity() {
             .setMessage("Restart?")
             .setPositiveButton(getString(R.string.yes)) { _, _ -> // dialog, whichButton are never used
                 resetTimers()
-                greyOutButtons()
                 top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
                 bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
                 top_sq.isClickable = true
@@ -99,15 +117,6 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
-    /**
-     * Grey out restart and pause buttons
-     */
-    private fun greyOutButtons() {
-        restart_button.alpha = .5f
-        restart_button.isClickable = false
-        pause_button.alpha = .5f
-        pause_button.isClickable = false
-    }
 
     /**
      * Pause game and set up for game to start with whichever player is preferred to start again
@@ -119,8 +128,7 @@ class MainActivity : AppCompatActivity() {
         bot_sq.isClickable = true
         top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
         bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
-        pause_button.alpha = .5f
-        pause_button.isClickable = false
+        pause_button.visibility = View.GONE
     }
 
     /**
@@ -164,7 +172,6 @@ class MainActivity : AppCompatActivity() {
      */
     private fun startTimerBot(seconds: Int) {
         bot_sq.setBackgroundColor(getColor(R.color.colorPrimary))
-
         countDownTimerBot = object : CountDownTimer(seconds * 1000L, 1000) {
             override fun onFinish() {
                 Log.d("T", "Bottom timer has ended!")
@@ -179,49 +186,50 @@ class MainActivity : AppCompatActivity() {
 
         makeButtonsActive()
 
+        bot_sq.setBackgroundColor(getColor(R.color.colorPrimary))
+        top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+        bot_clock.setTextColor(getColor(R.color.white))
+        top_clock.setTextColor(getColor(R.color.black))
+        countDownTimerBot.start()
+        pause_button.visibility = View.VISIBLE
         top_sq.isClickable = false
         bot_sq.isClickable = true
         pauseTimerTop()
         clockState = ClockStates.CLOCK_START
     }
 
-    /**
+     /**
      * If game hasn't started light up player clock when starting it and make buttons active,
      * else just start timer
      */
-
+      
     private fun startTimerTop(seconds: Int) {
-        top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
+            countDownTimerTop = object : CountDownTimer(seconds * 1000L, 1000) {
+                override fun onFinish() {
+                    Log.d("T", "Top timer has ended!")
+                    clockState = ClockStates.CLOCK_END
+                }
 
-        countDownTimerTop = object : CountDownTimer(seconds * 1000L, 1000) {
-            override fun onFinish() {
-                Log.d("T", "Top timer has ended!")
-                clockState = ClockStates.CLOCK_END
+                override fun onTick(p0: Long) {
+                    time_in_seconds_top = (p0 / 1000L).toInt()
+                    updateTextUITop()
+                }
             }
-            override fun onTick(p0: Long) {
-                time_in_seconds_top = (p0 / 1000L).toInt()
-                updateTextUITop()
-            }
-        }
-        countDownTimerTop.start()
+            countDownTimerTop.start()
 
-        makeButtonsActive()
-
-        top_sq.isClickable = true
-        bot_sq.isClickable = false
-        pauseTimerBot()
-        clockState = ClockStates.CLOCK_START
+            // Switch primary colors only when top goes first
+            top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
+            top_clock.setTextColor(getColor(R.color.white))
+            bot_clock.setTextColor(getColor(R.color.black))
+            bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+            pause_button.visibility = View.VISIBLE
+            top_sq.isClickable = true
+            bot_sq.isClickable = false
+            pauseTimerBot()
+            clockState = ClockStates.CLOCK_START
     }
 
-    /**
-     * Make buttons active
-     */
-    private fun makeButtonsActive() {
-        restart_button.alpha = 1f
-        restart_button.isClickable = true
-        pause_button.alpha = 1f
-        pause_button.isClickable = true
-    }
+
 
     /**
      * Open Settings menu
