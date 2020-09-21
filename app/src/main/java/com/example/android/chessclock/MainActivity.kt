@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
          * Set up new session
          */
         loadData()
-        //greyOutButtons()
+        pause_button.visibility = View.GONE
 
         /**
          * Button listeners
