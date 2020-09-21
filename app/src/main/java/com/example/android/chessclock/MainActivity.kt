@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var countDownTimerBot: CountDownTimer
     private lateinit var countDownTimerTop: CountDownTimer
 
-    var clockState: ClockStates = ClockStates.CLOCK_START
+    var clockState: ClockStates? = null
     var time_in_seconds_bot = START_TIME
     var time_in_seconds_top = START_TIME
     private var isNightModeOn: Boolean = false
@@ -47,15 +47,12 @@ class MainActivity : AppCompatActivity() {
         //greyOutButtons()
 
         /**
-         * Pause button listener
+         * Button listeners
          */
         pause_button.setOnClickListener {
             pauseState()
         }
 
-        /**
-         * Show dialog to restart when 'restart_button' pressed
-         */
         restart_button.setOnClickListener {
             restartGame()
         }
@@ -70,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         top_sq.setOnClickListener {
 
             when (clockState) {
+                null -> startTimerBot(time_in_seconds_bot)
                 ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
                 ClockStates.CLOCK_END -> resetTimers()
             }
@@ -80,6 +78,7 @@ class MainActivity : AppCompatActivity() {
          */
         bot_sq.setOnClickListener {
             when (clockState) {
+                null -> startTimerTop(time_in_seconds_top)
                 ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
                 ClockStates.CLOCK_END -> resetTimers()
             }
@@ -102,21 +101,23 @@ class MainActivity : AppCompatActivity() {
      * Show dialog to restart game
      */
     private fun restartGame() {
-        AlertDialog.Builder(this)
-            .setMessage("Restart?")
-            .setPositiveButton(getString(R.string.yes)) { _, _ -> // dialog, whichButton are never used
-                resetTimers()
-                top_sq.setBackgroundColor(getColor(R.color.colorInactive))
-                bot_sq.setBackgroundColor(getColor(R.color.colorInactive))
-                top_clock.setTextColor(getColor(R.color.colorInactiveText))
-                bot_clock.setTextColor(getColor(R.color.colorInactiveText))
-                top_sq.isClickable = true
-                bot_sq.isClickable = true
-            }
-            .setNegativeButton(getString(R.string.no)) { _, _ -> // dialog, whichButton are never used
-                // Closes dialog
-            }
-            .show()
+        if(clockState == ClockStates.CLOCK_START) {
+            AlertDialog.Builder(this)
+                .setMessage("Restart?")
+                .setPositiveButton(getString(R.string.yes)) { _, _ -> // dialog, whichButton are never used
+                    resetTimers()
+                    top_sq.setBackgroundColor(getColor(R.color.colorInactive))
+                    bot_sq.setBackgroundColor(getColor(R.color.colorInactive))
+                    top_clock.setTextColor(getColor(R.color.colorInactiveText))
+                    bot_clock.setTextColor(getColor(R.color.colorInactiveText))
+                    top_sq.isClickable = true
+                    bot_sq.isClickable = true
+                }
+                .setNegativeButton(getString(R.string.no)) { _, _ -> // dialog, whichButton are never used
+                    // Closes dialog
+                }
+                .show()
+        }
     }
 
 
@@ -179,6 +180,8 @@ class MainActivity : AppCompatActivity() {
      * else just start timer
      */
     private fun startTimerBot(seconds: Int) {
+        clockState = ClockStates.CLOCK_START
+
         countDownTimerBot = object : CountDownTimer(seconds * 1000L, 1000) {
             override fun onFinish() {
                 Log.d("T", "Bottom timer has ended!")
@@ -211,6 +214,8 @@ class MainActivity : AppCompatActivity() {
      */
 
     private fun startTimerTop(seconds: Int) {
+        clockState = ClockStates.CLOCK_START
+
         countDownTimerTop = object : CountDownTimer(seconds * 1000L, 1000) {
             override fun onFinish() {
                 Log.d("T", "Top timer has ended!")
