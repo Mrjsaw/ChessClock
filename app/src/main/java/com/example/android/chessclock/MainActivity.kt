@@ -66,7 +66,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         /**
-         * If game is active start clock from opponent, else start own clock
+         * Switch cases on what to do on top / bot click
+         *  - startTimer top/bot
+         *  - resetTimers on game end
          */
         top_sq.setOnClickListener {
 
@@ -77,9 +79,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        /**
-         * If game is active start clock from opponent, else start own clock
-         */
         bot_sq.setOnClickListener {
             when (clockState) {
                 null -> startTimerTop(time_in_seconds_top)
@@ -145,7 +144,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Set timers to new values ???
+     * Set timers to new specified values
      */
     private fun resetTimers() {
         //add pop-up Are You Sure? [YES/NO]
