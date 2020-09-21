@@ -5,13 +5,14 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
 
-        <item name="bulbColor">@color/bulbColor</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="settingsBar">@color/settingsBar</item>
 
         <item name="topClockText">@color/topClockText</item>
+        <item name="topOffClockText">@color/topOffClockText</item>
         <item name="bottomClockText">@color/bottomClockText</item>
+        <item name="bottomOffClockText">@color/bottomOffClockText</item>
     </style>
     <style name="TabLayoutFontSize" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">20sp</item>
