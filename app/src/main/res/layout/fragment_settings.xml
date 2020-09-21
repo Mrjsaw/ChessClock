@@ -28,16 +28,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="30dp">
+
             <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="Time"
-                    android:textSize="20dp"
-                    android:textColor="@android:color/black"
+                    android:layout_marginLeft="22dp"
+                    android:layout_weight="1"
                     android:gravity="start"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="22dp"></TextView>
+                    android:text="Time"
+                    android:textColor="@color/topClockText"
+                    android:textSize="20dp"
+                    android:textStyle="bold"></TextView>
             <TextView
                     android:id="@+id/top_time"
                     android:layout_width="0dp"
@@ -61,16 +62,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="30dp">
+
             <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="Increment"
-                    android:textSize="20dp"
-                    android:textColor="@android:color/black"
+                    android:layout_marginLeft="22dp"
+                    android:layout_weight="1"
                     android:gravity="start"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="22dp"></TextView>
+                    android:text="Increment"
+                    android:textColor="@color/topClockText"
+                    android:textSize="20dp"
+                    android:textStyle="bold"></TextView>
             <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -109,16 +111,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="30dp">
+
             <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="Time"
-                    android:textSize="20dp"
-                    android:textColor="@android:color/black"
+                    android:layout_marginLeft="22dp"
+                    android:layout_weight="1"
                     android:gravity="start"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="22dp"></TextView>
+                    android:text="Time"
+                    android:textColor="@color/topClockText"
+                    android:textSize="20dp"
+                    android:textStyle="bold"></TextView>
             <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -140,16 +143,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="30dp">
+
             <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:text="Increment"
-                    android:textSize="20dp"
-                    android:textColor="@android:color/black"
+                    android:layout_marginLeft="22dp"
+                    android:layout_weight="1"
                     android:gravity="start"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="22dp"></TextView>
+                    android:text="Increment"
+                    android:textColor="@color/topClockText"
+                    android:textSize="20dp"
+                    android:textStyle="bold"></TextView>
             <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"

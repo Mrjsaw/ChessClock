@@ -12,13 +12,12 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Settings"
-            android:textColor="@android:color/black"
-            android:textSize="24sp"
-            android:paddingTop="15dp"
             android:layout_marginLeft="15dp"
+            android:paddingTop="15dp"
             android:paddingBottom="15dp"
-            ></TextView>
+            android:text="Settings"
+            android:textColor="@color/topClockText"
+            android:textSize="24sp"></TextView>
     <android.support.design.widget.TabLayout
             app:tabTextAppearance="@style/TabLayoutFontSize"
             app:tabSelectedTextColor="@color/colorActive"

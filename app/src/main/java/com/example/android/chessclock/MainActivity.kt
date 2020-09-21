@@ -21,13 +21,17 @@ class MainActivity : AppCompatActivity() {
 
     enum class ClockStates { CLOCK_START, CLOCK_END }
 
+    var clockState: ClockStates? = null
+
     private lateinit var countDownTimerBot: CountDownTimer
     private lateinit var countDownTimerTop: CountDownTimer
 
-    var clockState: ClockStates? = null
     var time_in_seconds_bot = START_TIME
     var time_in_seconds_top = START_TIME
+
     private var isNightModeOn: Boolean = false
+
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +65,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         /**
-         * If game is active start clock from opponent, else start own clock
+         * Switch cases on what to do on top / bot click
+         *  - startTimer top/bot
+         *  - resetTimers on game end
          */
         top_sq.setOnClickListener {
 
@@ -72,9 +78,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        /**
-         * If game is active start clock from opponent, else start own clock
-         */
         bot_sq.setOnClickListener {
             when (clockState) {
                 null -> startTimerTop(time_in_seconds_top)
@@ -85,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Set Theme colors on resuming MainActivity
+     * Set Theme settings on resuming MainActivity
      */
     override fun onResume() {
         super.onResume()
@@ -94,6 +97,8 @@ class MainActivity : AppCompatActivity() {
         top_clock.setTextColor(getColor(R.color.colorInactiveText))
         bot_clock.setTextColor(getColor(R.color.colorInactiveText))
         dashBoard.setBackgroundColor(getColor(R.color.colorDashboard))
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.clear_throat)
     }
 
     /**
@@ -121,7 +126,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     /**
      * Pause game and set up for game to start with whichever player is preferred to start again
      */
@@ -138,17 +142,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Set timers to new values ???
+     * Set timers to new specified values
      */
     private fun resetTimers() {
-        //add pop-up Are You Sure? [YES/NO]
         pauseTimerTop()
         pauseTimerBot()
         time_in_seconds_bot = START_TIME
         time_in_seconds_top = START_TIME
         updateTextUIBot()
         updateTextUITop()
-//        clockState = ClockStates.CLOCK_START
     }
 
     /**
@@ -177,8 +179,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * If game hasn't started light up player clock when starting it and make buttons active,
-     * else just start timer
+     * Started opponent clock and run onStartTimer
      */
     private fun startTimerBot(seconds: Int) {
         onStartTimer()
@@ -208,10 +209,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * If game hasn't started light up player clock when starting it and make buttons active,
-     * else just start timer
+     * Started opponent clock and run onStartTimer
      */
-
     private fun startTimerTop(seconds: Int) {
         onStartTimer()
 
@@ -245,11 +244,9 @@ class MainActivity : AppCompatActivity() {
      */
     private fun onStartTimer() {
         clockState = ClockStates.CLOCK_START
-        val endOfTurnSound: MediaPlayer = MediaPlayer.create(this, R.raw.clear_throat)
-        endOfTurnSound.start()
+        mediaPlayer?.start()
         pause_button.visibility = View.VISIBLE
     }
-
 
     /**
      * Open Settings menu and pause MainActivity
@@ -298,4 +295,3 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 }
-
