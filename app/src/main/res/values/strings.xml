@@ -5,4 +5,6 @@
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="switchDark">Enable Dark Mode</string>
+    <string name="switchLight">Disable Dark Mode</string>
 </resources>

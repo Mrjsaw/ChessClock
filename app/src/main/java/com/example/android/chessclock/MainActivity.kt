@@ -2,17 +2,17 @@ package com.example.android.chessclock
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.SharedPreferences
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
-
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_themes.*
 
 const val START_TIME = 600 //change top/bot
 const val INCREMENT = 5 //change top/bot
@@ -31,37 +31,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         setContentView(R.layout.activity_main)
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val sharedPrefsEdit:SharedPreferences.Editor=sharedPreferences.edit()
+        val sharedPrefsEdit: SharedPreferences.Editor = sharedPreferences.edit()
 
         /**
          * Set up new session
          */
         loadData()
         //greyOutButtons()
-
-        /*
-        /**
-         * Load theme saved in sharedPreferences
-         */
-        action_theme.setOnClickListener(View.OnClickListener{
-            if (isNightModeOn){
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                sharedPrefsEdit.putBoolean("BOOLEAN_KEY",false)
-                sharedPrefsEdit.apply()
-                //TODO: redraw fragment without destroying somehow instead of using recreate
-                recreate()
-
-            }else{
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                sharedPrefsEdit.putBoolean("BOOLEAN_KEY",true)
-                sharedPrefsEdit.apply()
-                recreate()
-            }
-        })
-        */
 
         /**
          * Pause button listener
@@ -99,6 +81,7 @@ class MainActivity : AppCompatActivity() {
          * If game is active start clock from opponent, else start own clock
          */
         top_sq.setOnClickListener {
+
                 when (clockState) {
                     ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
                     ClockStates.CLOCK_END -> resetTimers()
@@ -114,17 +97,26 @@ class MainActivity : AppCompatActivity() {
                     ClockStates.CLOCK_END -> resetTimers()
                 }
         }
-    }
 
     /**
-     * Grey out restart and pause buttons
+     * Show dialog to restart game
      */
-    private fun greyOutButtons() {
-        restart_button.alpha = .5f;
-        restart_button.isClickable = false;
-        pause_button.alpha = .5f;
-        pause_button.isClickable = false;
+    private fun restartGame() {
+        AlertDialog.Builder(this)
+            .setMessage("Restart?")
+            .setPositiveButton(getString(R.string.yes)) { _, _ -> // dialog, whichButton are never used
+                resetTimers()
+                top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+                bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
+                top_sq.isClickable = true
+                bot_sq.isClickable = true
+            }
+            .setNegativeButton(getString(R.string.no)) { _, _ -> // dialog, whichButton are never used
+                // Closes dialog
+            }
+            .show()
     }
+
 
     /**
      * Pause game and set up for game to start with whichever player is preferred to start again
@@ -132,8 +124,8 @@ class MainActivity : AppCompatActivity() {
     private fun pauseState() {
         pauseTimerTop()
         pauseTimerBot()
-        top_sq.isClickable=true
-        bot_sq.isClickable=true
+        top_sq.isClickable = true
+        bot_sq.isClickable = true
         top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
         bot_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
         pause_button.visibility = View.GONE
@@ -164,6 +156,7 @@ class MainActivity : AppCompatActivity() {
             top_sq.setBackgroundColor(getColor(R.color.colorPrimary))
         }
     }
+
     private fun pauseTimerTop() {
         if (this::countDownTimerTop.isInitialized) {
             countDownTimerTop.cancel()
@@ -178,17 +171,21 @@ class MainActivity : AppCompatActivity() {
      * else just start timer
      */
     private fun startTimerBot(seconds: Int) {
+        bot_sq.setBackgroundColor(getColor(R.color.colorPrimary))
         countDownTimerBot = object : CountDownTimer(seconds * 1000L, 1000) {
             override fun onFinish() {
                 Log.d("T", "Bottom timer has ended!")
                 clockState = ClockStates.CLOCK_END
             }
-
             override fun onTick(p0: Long) {
                 time_in_seconds_bot = (p0 / 1000L).toInt()
                 updateTextUIBot()
             }
         }
+        countDownTimerBot.start()
+
+        makeButtonsActive()
+
         bot_sq.setBackgroundColor(getColor(R.color.colorPrimary))
         top_sq.setBackgroundColor(getColor(R.color.colorPrimaryDark))
         bot_clock.setTextColor(getColor(R.color.white))
@@ -201,10 +198,11 @@ class MainActivity : AppCompatActivity() {
         clockState = ClockStates.CLOCK_START
     }
 
-    /**
+     /**
      * If game hasn't started light up player clock when starting it and make buttons active,
      * else just start timer
      */
+      
     private fun startTimerTop(seconds: Int) {
             countDownTimerTop = object : CountDownTimer(seconds * 1000L, 1000) {
                 override fun onFinish() {
@@ -232,15 +230,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    /**
-     * Make buttons active
-     */
-    private fun makeButtonsActive() {
-        restart_button.alpha = 1f;
-        restart_button.isClickable = true;
-        pause_button.alpha = 1f;
-        pause_button.isClickable = true;
-    }
 
     /**
      * Open Settings menu
@@ -256,6 +245,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateTextUIBot() {
         bot_clock.text = Clock(time_in_seconds_bot).updateText()
     }
+
     private fun updateTextUITop() {
         top_clock.text = Clock(time_in_seconds_top).updateText()
     }
@@ -265,9 +255,9 @@ class MainActivity : AppCompatActivity() {
      */
     private fun loadData() {
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        isNightModeOn = sharedPreferences.getBoolean("BOOLEAN_KEY",false)
+        isNightModeOn = sharedPreferences.getBoolean("BOOLEAN_KEY", false)
 
-        if (isNightModeOn){
+        if (isNightModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
     }

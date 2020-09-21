@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,18 +17,51 @@
             android:background="@color/colorPrimaryDark"
             android:orientation="horizontal">
 
-        <TextView
-
-                android:id="@+id/top_clock"
+        <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:rotation="180"
-                android:text="15:00"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="130sp" />
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            <TextView
+
+                    android:id="@+id/top_clock2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/digital"
+                    android:rotation="180"
+                    android:text="88:88"
+                    android:textAlignment="center"
+                    android:textColor="@color/bottomOffClockText"
+                    android:textSize="130sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+
+                    android:id="@+id/top_clock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/digital"
+                    android:rotation="180"
+                    android:text="15:00"
+                    android:textAlignment="center"
+                    android:textColor="@color/topClockText"
+                    android:textSize="130sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
     </LinearLayout>
 
 
@@ -52,7 +86,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:id="@+id/settings_button"
-                    android:textColor="@color/white"
+                    android:textColor="@color/buttonColor"
                     android:background="@drawable/ic_settings_black_24dp">
 
             </Button>
@@ -98,15 +132,46 @@
             android:orientation="horizontal"
             >
 
-        <TextView
-                android:id="@+id/bot_clock"
+        <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="15:00"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="130sp" />
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            <TextView
+                    android:id="@+id/bot_clock2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/digital"
+                    android:text="88:88"
+                    android:textAlignment="center"
+                    android:textColor="@color/bottomOffClockText"
+                    android:textSize="130sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                    android:id="@+id/bot_clock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/digital"
+                    android:text="15:00"
+                    android:textAlignment="center"
+                    android:textColor="@color/bottomClockText"
+                    android:textSize="130sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
     </LinearLayout>
 </LinearLayout>

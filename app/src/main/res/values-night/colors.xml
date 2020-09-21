@@ -2,11 +2,13 @@
 <resources>
     <color name="colorPrimary">@android:color/white</color>
     <color name="colorPrimaryDark">@android:color/darker_gray</color>
-    <color name="colorAccent">@android:color/holo_blue_light</color>
 
-    <color name="bulbColor">@android:color/black</color>
+    <color name="colorAccent">@android:color/holo_blue_light</color>
     <color name="settingsBar">#7A7979</color>
+    <color name="buttonColor">#000</color>
 
     <color name="topClockText">#686464</color>
+    <color name="topOffClockText">#b9b9b9</color>
     <color name="bottomClockText">#323131</color>
+    <color name="bottomOffClockText">#b9b9b9</color>
 </resources>
