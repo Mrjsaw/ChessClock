@@ -62,25 +62,20 @@ class MainActivity : AppCompatActivity() {
          * If game is active start clock from opponent, else start own clock
          */
         top_sq.setOnClickListener {
-
             when (clockState) {
                 ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
                 ClockStates.CLOCK_END -> resetTimers()
             }
-
         }
 
         /**
          * If game is active start clock from opponent, else start own clock
          */
         bot_sq.setOnClickListener {
-
             when (clockState) {
                 ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
                 ClockStates.CLOCK_END -> resetTimers()
             }
-
-
         }
     }
 
