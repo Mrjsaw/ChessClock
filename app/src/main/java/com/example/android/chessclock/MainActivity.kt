@@ -21,13 +21,14 @@ class MainActivity : AppCompatActivity() {
 
     enum class ClockStates { CLOCK_START, CLOCK_END }
 
+    var clockState: ClockStates? = null
 
     private lateinit var countDownTimerBot: CountDownTimer
     private lateinit var countDownTimerTop: CountDownTimer
 
-    var clockState: ClockStates? = null
     var time_in_seconds_bot = START_TIME
     var time_in_seconds_top = START_TIME
+
     private var isNightModeOn: Boolean = false
 
     private var mediaPlayer: MediaPlayer? = null
@@ -183,8 +184,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * If game hasn't started light up player clock when starting it and make buttons active,
-     * else just start timer
+     * Started opponent clock and run onStartTimer
      */
     private fun startTimerBot(seconds: Int) {
         onStartTimer()
@@ -214,10 +214,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * If game hasn't started light up player clock when starting it and make buttons active,
-     * else just start timer
+     * Started opponent clock and run onStartTimer
      */
-
     private fun startTimerTop(seconds: Int) {
         onStartTimer()
 
