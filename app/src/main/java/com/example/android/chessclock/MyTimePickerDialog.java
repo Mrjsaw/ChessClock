@@ -1,3 +1,20 @@
+/*
+ * Copyright (C) 2007 The Android Open Source Project
+ * Copyright (C) 2013 Ivan Kovac  navratnanos@gmail.com
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 package com.example.android.chessclock;
 
 import java.util.Calendar;
@@ -126,10 +143,11 @@ public class MyTimePickerDialog extends AlertDialog implements OnClickListener,
     }
 
     private void updateTitle(int hour, int minute, int seconds) {
-        String sHour = String.format("%02d", hour);
-        String sMin = String.format("%02d", minute);
-        String sSec = String.format("%02d", seconds);
-        setTitle(sHour + ":" + sMin + ":" + sSec);
+      //use my own title
+    }
+
+    public void updateTitle(String title) {
+        setTitle(title);
     }
 
     @Override
