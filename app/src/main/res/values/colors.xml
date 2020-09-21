@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-
-    <color name="bulbColor">@android:color/white</color>
-    <color name="settingsBar">#201F1F</color>
+    <color name="colorActive">#AD98C2</color>
+    <color name="colorInactive">#989896</color>
+    <color name="colorActiveText">#FFF</color>
+    <color name="colorInactiveText">#000</color>
+    <color name="colorDashboard">#201F1F</color>
 
     <color name="topClockText">#ededed</color>
-    <color name="bottomClockText">@android:color/secondary_text_light</color>
+    <color name="topOffClockText">#FF7BDF</color>
+    <color name="bottomClockText">#ededed</color>
+    <color name="bottomOffClockText">#989896</color>
 </resources>

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="bulbColor" format="color"/>
-    <attr name="settingsBar" format="color"/>
+    <attr name="colorActive" format="color"/>
+    <attr name="colorInactive" format="color"/>
+    <attr name="colorDashboard" format="color"/>
+    <attr name="colorActiveText" format="color"/>
+    <attr name="colorInactiveText" format="color"/>
+
     <attr name="topClockText" format="color"/>
+    <attr name="topOffClockText" format="color"/>
     <attr name="bottomClockText" format="color"/>
+    <attr name="bottomOffClockText" format="color"/>
 </resources>
