@@ -86,7 +86,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:id="@+id/settings_button"
-                    android:textColor="@color/white"
+                    android:textColor="@color/buttonColor"
                     android:background="@drawable/ic_settings_black_24dp">
 
             </Button>

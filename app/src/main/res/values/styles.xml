@@ -8,6 +8,7 @@
 
         <item name="colorAccent">@color/colorAccent</item>
         <item name="settingsBar">@color/settingsBar</item>
+        <item name="buttonColor">@color/buttonColor</item>
 
         <item name="topClockText">@color/topClockText</item>
         <item name="topOffClockText">@color/topOffClockText</item>

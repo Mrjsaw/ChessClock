@@ -5,6 +5,7 @@
 
     <color name="colorAccent">#b9b9b9</color>
     <color name="settingsBar">#201F1F</color>
+    <color name="buttonColor">#b9b9b9</color>
 
     <color name="topClockText">#ededed</color>
     <color name="topOffClockText">#00423B</color>
