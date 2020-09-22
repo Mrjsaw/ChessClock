@@ -13,7 +13,7 @@
             android:background="@drawable/theme_btn_background"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:text="@string/switchDark"
+            android:text="@string/switchDarkStr"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginTop="40dp"
-            android:text="Start own clock when paused"
+            android:text="@string/selfStartStr"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/action_theme" />

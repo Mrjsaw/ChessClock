@@ -134,7 +134,7 @@ class MainActivity : AppCompatActivity() {
         if (clockState == ClockStates.CLOCK_START) {
             AlertDialog.Builder(this)
                 .setMessage("Restart?")
-                .setPositiveButton(getString(R.string.yes)) { _, _ -> // dialog, whichButton are never used
+                .setPositiveButton(getString(R.string.yesStr)) { _, _ -> // dialog, whichButton are never used
                     resetTimers()
                     top_sq.setBackgroundColor(getColor(R.color.colorInactive))
                     bot_sq.setBackgroundColor(getColor(R.color.colorInactive))
@@ -145,7 +145,7 @@ class MainActivity : AppCompatActivity() {
                     clockState = null
                     pause_button.visibility = View.GONE
                 }
-                .setNegativeButton(getString(R.string.no)) { _, _ -> // dialog, whichButton are never used
+                .setNegativeButton(getString(R.string.noStr)) { _, _ -> // dialog, whichButton are never used
                     // Closes dialog
                 }
                 .show()

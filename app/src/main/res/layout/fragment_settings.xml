@@ -6,17 +6,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
         android:orientation="vertical">
-      <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
 
-                android:layout_marginTop="45dp"
-                android:textSize="20sp"
-                android:textColor="#ABABAB"
-                android:letterSpacing="0.05"
-                android:text="TOP CLOCK"
-                />
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+
+            android:layout_marginTop="45dp"
+            android:letterSpacing="0.05"
+            android:text="@string/topClockStr"
+            android:textColor="#ABABAB"
+            android:textSize="20sp" />
         <TableRow
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -35,7 +35,7 @@
                     android:layout_marginLeft="22dp"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:text="Time"
+                    android:text="@string/timeStr"
                     android:textColor="@color/topClockText"
                     android:textSize="20dp"
                     android:textStyle="bold"></TextView>
@@ -69,7 +69,7 @@
                     android:layout_marginLeft="22dp"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:text="Increment"
+                    android:text="@string/incrementStr"
                     android:textColor="@color/topClockText"
                     android:textSize="20dp"
                     android:textStyle="bold"></TextView>
@@ -89,17 +89,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#ABABAB"></TableRow>
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
 
-                android:layout_marginTop="45dp"
-                android:textSize="20sp"
-                android:textColor="#ABABAB"
-                android:letterSpacing="0.05"
-                android:text="BOTTOM CLOCK"
-                />
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+
+            android:layout_marginTop="45dp"
+            android:letterSpacing="0.05"
+            android:text="@string/bottomClockStr"
+            android:textColor="#ABABAB"
+            android:textSize="20sp" />
         <TableRow
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -118,7 +118,7 @@
                     android:layout_marginLeft="22dp"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:text="Time"
+                    android:text="@string/timeStr"
                     android:textColor="@color/topClockText"
                     android:textSize="20dp"
                     android:textStyle="bold"></TextView>
@@ -150,7 +150,7 @@
                     android:layout_marginLeft="22dp"
                     android:layout_weight="1"
                     android:gravity="start"
-                    android:text="Increment"
+                    android:text="@string/incrementStr"
                     android:textColor="@color/topClockText"
                     android:textSize="20dp"
                     android:textStyle="bold"></TextView>
@@ -172,17 +172,18 @@
                 android:background="#ABABAB"></TableRow>
 
     </LinearLayout>
+
     <Button
             android:id="@+id/start_button"
-            android:layout_marginBottom="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/colorActive"
-            android:text="Start"
-            android:textColor="@android:color/white"
             android:layout_gravity="bottom"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@color/colorActive"
+            android:text="@string/startStr"
+            android:textColor="@android:color/white"
             android:textSize="24dp">
 
     </Button>
