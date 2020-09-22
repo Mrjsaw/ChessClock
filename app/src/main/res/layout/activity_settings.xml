@@ -19,7 +19,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.1"
                 app:srcCompat="@mipmap/ic_launcher_foreground"
-                android:contentDescription="Icon" />
+                android:contentDescription="@string/iconStr" />
 
         <TextView
                 android:id="@+id/textView"
@@ -28,7 +28,7 @@
                 android:layout_weight="0.9"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
-                android:text="Settings"
+                android:text="@string/settingsStr"
                 android:textColor="@color/topClockText"
                 android:textSize="24sp" />
     </LinearLayout>

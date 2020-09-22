@@ -37,13 +37,13 @@ class ThemesFragment : Fragment() {
         checkBox = view.findViewById(R.id.self_start_check)
         if (sharedPreferences != null) {
             isNightModeOn = sharedPreferences.getBoolean("BOOLEAN_KEY", false)
-            action_theme.text = resources.getString(R.string.switchDark)
+            action_theme.text = resources.getString(R.string.switchDarkStr)
             selfStart = sharedPreferences.getBoolean("SELF_START", false)
             checkBox.isChecked = selfStart
         }
         if (isNightModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            action_theme.text = resources.getString(R.string.switchLight)
+            action_theme.text = resources.getString(R.string.switchLightStr)
         }
 
         checkBox.setOnClickListener {
@@ -69,14 +69,14 @@ class ThemesFragment : Fragment() {
                 sharedPrefsEdit?.putBoolean("BOOLEAN_KEY", false)
                 sharedPrefsEdit?.apply()
                 isNightModeOn = false
-                action_theme.text = resources.getString(R.string.switchLight)
+                action_theme.text = resources.getString(R.string.switchLightStr)
                 this.activity?.recreate()
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 sharedPrefsEdit?.putBoolean("BOOLEAN_KEY", true)
                 sharedPrefsEdit?.apply()
                 isNightModeOn = true
-                action_theme.text = resources.getString(R.string.switchDark)
+                action_theme.text = resources.getString(R.string.switchDarkStr)
                 this.activity?.recreate()
             }
         }
@@ -87,7 +87,10 @@ class ThemesFragment : Fragment() {
         val spinner = view.findViewById<Spinner>(R.id.drop_down)
         val textView = view.findViewById<TextView>(R.id.drop_down_text)
 
-        val sounds = arrayListOf("Select a sound...", "Clear throat", "Mechanical click")
+        val sounds = arrayListOf(
+            resources.getString(R.string.selectSoundStr),
+            resources.getString(R.string.clearTroatStr),
+            resources.getString(R.string.mechClickStr))
 
         spinner?.adapter = ArrayAdapter(
             activity?.applicationContext,

@@ -11,13 +11,27 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="120dp"
             android:background="@drawable/theme_btn_background"
+            android:elevation="30dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:text="@string/switchDark"
+            android:text="@string/switchDarkStr"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+            android:id="@+id/self_start_check"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginTop="40dp"
+            android:elevation="30dp"
+            android:text="@string/selfStartStr"
+            android:textCursorDrawable="?android:attr/textCursorDrawable"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/action_theme"
+            android:buttonTint="@color/colorActive" />
 
     <Spinner
             android:id="@+id/drop_down"
@@ -29,7 +43,7 @@
             android:background="@drawable/drop_down_background"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:popupBackground="@drawable/drop_down_background"
+            android:popupBackground="@drawable/popup_background"
             android:spinnerMode="dropdown"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,6 +57,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="24dp"
+            android:elevation="30dp"
             android:gravity="center"
             android:textColor="@color/bottomClockText"
             android:textSize="34sp"
@@ -50,13 +65,4 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-    <CheckBox
-            android:id="@+id/self_start_check"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_marginTop="40dp"
-            android:text="Start own clock when paused"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/action_theme" />
 </android.support.constraint.ConstraintLayout>
