@@ -45,7 +45,6 @@
                     android:layout_height="match_parent"
                     android:gravity="end"
                     android:text="15:00"
-                    android:onClick="showTimePickerDialog"
                     android:textSize="20sp"
                     android:layout_marginRight="50dp"
                     ></TextView>
@@ -72,6 +71,7 @@
                     android:textStyle="bold"
                     android:layout_marginLeft="22dp"></TextView>
             <TextView
+                    android:id="@+id/top_inc_s"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -120,6 +120,7 @@
                     android:textStyle="bold"
                     android:layout_marginLeft="22dp"></TextView>
             <TextView
+                    android:id="@+id/bot_time_s"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -151,6 +152,7 @@
                     android:textStyle="bold"
                     android:layout_marginLeft="22dp"></TextView>
             <TextView
+                    android:id="@+id/bot_inc_s"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
