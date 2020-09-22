@@ -73,34 +73,34 @@ class MainActivity : AppCompatActivity() {
          */
         top_sq.setOnClickListener {
             if (selfStart && clockState == null) {
-                when (clockState) {
-                    null -> startTimerTop(time_in_seconds_top)
-                    ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
-                    ClockStates.CLOCK_END -> resetTimers()
-                }
+                topCaseLogic()
             } else {
-                when (clockState) {
-                    null -> startTimerBot(time_in_seconds_bot)
-                    ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
-                    ClockStates.CLOCK_END -> resetTimers()
-                }
+                botCaseLogic()
             }
         }
 
         bot_sq.setOnClickListener {
             if (selfStart && clockState == null) {
-                when (clockState) {
-                    null -> startTimerBot(time_in_seconds_top)
-                    ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_top) //add increments hier nog
-                    ClockStates.CLOCK_END -> resetTimers()
-                }
+                botCaseLogic()
             } else {
-                when (clockState) {
-                    null -> startTimerTop(time_in_seconds_top)
-                    ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
-                    ClockStates.CLOCK_END -> resetTimers()
-                }
+                topCaseLogic()
             }
+        }
+    }
+
+    private fun botCaseLogic() {
+        when (clockState) {
+            null -> startTimerBot(time_in_seconds_bot)
+            ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
+            ClockStates.CLOCK_END -> resetTimers()
+        }
+    }
+
+    private fun topCaseLogic() {
+        when (clockState) {
+            null -> startTimerTop(time_in_seconds_top)
+            ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
+            ClockStates.CLOCK_END -> resetTimers()
         }
     }
 
