@@ -15,10 +15,16 @@
 
         <ImageView
                 android:id="@+id/settingsTitleIV"
-                android:layout_width="72dp"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="0.1"
+                android:background="@drawable/theme_btn_background"
                 android:contentDescription="@string/iconStr"
+                android:scaleType="fitXY"
                 app:srcCompat="@mipmap/ic_launcher_foreground" />
 
         <TextView
