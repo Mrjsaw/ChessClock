@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    // App Title
+    <string name="app_name">棋钟</string>
+
+    // Activity Main
+    <string name="yesStr">是</string>
+    <string name="noStr">没有</string>
+
+    // Activity Settings
+    <string name="iconStr">图标</string>
+    <string name="settingsStr">设定值</string>
+
+    // Fragment Themes
+    <string name="switchDarkStr">启用夜间模式</string>
+    <string name="switchLightStr">启用日间模式</string>
+    <string name="selfStartStr">暂停时开始自己的时钟</string>
+
+    <string name="selectSoundStr">选择声音…</string>
+    <string name="clearTroatStr">清嗓子</string>
+    <string name="mechClickStr">机械点击</string>
+
+    // Fragment Settings
+    <string name="topClockStr">顶钟</string>
+    <string name="timeStr">时间</string>
+    <string name="incrementStr">增量</string>
+    <string name="bottomClockStr">底部时钟</string>
+    <string name="startStr">开始</string>
+
+</resources>
