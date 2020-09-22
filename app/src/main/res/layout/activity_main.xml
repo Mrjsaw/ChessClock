@@ -19,13 +19,14 @@
             android:orientation="horizontal">
 
         <android.support.constraint.ConstraintLayout
+                android:id="@+id/topClockContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
             <TextView
 
-                    android:id="@+id/top_clock2"
+                    android:id="@+id/top_clock_mask"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -68,6 +69,7 @@
 
 
     <LinearLayout
+            android:id="@+id/buttonBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -77,6 +79,7 @@
             android:paddingRight="80dp">
 
         <FrameLayout
+                android:id="@+id/settingsFrame"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -94,6 +97,7 @@
         </FrameLayout>
 
         <FrameLayout
+                android:id="@+id/pauseFrame"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
@@ -109,6 +113,7 @@
         </FrameLayout>
 
         <FrameLayout
+                android:id="@+id/restartFrame"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
@@ -136,12 +141,13 @@
             android:orientation="horizontal">
 
         <android.support.constraint.ConstraintLayout
+                android:id="@+id/botClockContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
             <TextView
-                    android:id="@+id/bot_clock2"
+                    android:id="@+id/bot_clock_mask"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
