@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    // App Title
+    <string name="app_name">Шахматные часы</string>
+
+    // Activity Main
+    <string name="yesStr">да</string>
+    <string name="noStr">Нет</string>
+
+    // Activity Settings
+    <string name="iconStr">Значок</string>
+    <string name="settingsStr">Настройки</string>
+
+    // Fragment Themes
+    <string name="switchDarkStr">Включить ночной режим</string>
+    <string name="switchLightStr">Включить дневной режим</string>
+    <string name="selfStartStr">Запускать собственные часы при паузе</string>
+
+    <string name="selectSoundStr">Выберите звук…</string>
+    <string name="clearTroatStr">Прочистить горло</string>
+    <string name="mechClickStr">Механический щелчок</string>
+
+    // Fragment Settings
+    <string name="topClockStr">ТОП ЧАСЫ</string>
+    <string name="timeStr">Время</string>
+    <string name="incrementStr">Инкремент</string>
+    <string name="bottomClockStr">НИЖНИЕ ЧАСЫ</string>
+    <string name="startStr">Начало</string>
+
+</resources>
