@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     var time_in_seconds_top = START_TIME
 
     private var isNightModeOn: Boolean = false
+    private var selfStart: Boolean = false
 
     private var mediaPlayer: MediaPlayer? = null
 
@@ -65,24 +66,40 @@ class MainActivity : AppCompatActivity() {
         }
 
         /**
-         * Switch cases on what to do on top / bot click
+         * Switch cases on what to do on top / bot click,
+         * checking for 'selfStart' setting
          *  - startTimer top/bot
          *  - resetTimers on game end
          */
         top_sq.setOnClickListener {
-
-            when (clockState) {
-                null -> startTimerBot(time_in_seconds_bot)
-                ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
-                ClockStates.CLOCK_END -> resetTimers()
+            if (selfStart && clockState == null) {
+                when (clockState) {
+                    null -> startTimerTop(time_in_seconds_top)
+                    ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
+                    ClockStates.CLOCK_END -> resetTimers()
+                }
+            } else {
+                when (clockState) {
+                    null -> startTimerBot(time_in_seconds_bot)
+                    ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
+                    ClockStates.CLOCK_END -> resetTimers()
+                }
             }
         }
 
         bot_sq.setOnClickListener {
-            when (clockState) {
-                null -> startTimerTop(time_in_seconds_top)
-                ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
-                ClockStates.CLOCK_END -> resetTimers()
+            if (selfStart && clockState == null) {
+                when (clockState) {
+                    null -> startTimerBot(time_in_seconds_top)
+                    ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_top) //add increments hier nog
+                    ClockStates.CLOCK_END -> resetTimers()
+                }
+            } else {
+                when (clockState) {
+                    null -> startTimerTop(time_in_seconds_top)
+                    ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
+                    ClockStates.CLOCK_END -> resetTimers()
+                }
             }
         }
     }
@@ -100,7 +117,10 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
 
-        when (sharedPreferences.getString("TURN_SOUND", null)){
+        selfStart = sharedPreferences.getBoolean("SELF_START", false)
+
+
+        when (sharedPreferences.getString("TURN_SOUND", null)) {
             "Select a sound..." -> mediaPlayer?.reset()
             "Clear throat" -> mediaPlayer = MediaPlayer.create(this, R.raw.clear_throat)
             "Mechanical click" -> mediaPlayer = MediaPlayer.create(this, R.raw.mechanical_switch)
@@ -145,6 +165,7 @@ class MainActivity : AppCompatActivity() {
         top_clock.setTextColor(getColor(R.color.colorInactiveText))
         bot_clock.setTextColor(getColor(R.color.colorInactiveText))
         pause_button.visibility = View.GONE
+        clockState = null
     }
 
     /**
@@ -280,6 +301,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadData() {
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         isNightModeOn = sharedPreferences.getBoolean("BOOLEAN_KEY", false)
+        selfStart = sharedPreferences.getBoolean("SELF_START", false)
 
         if (isNightModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
