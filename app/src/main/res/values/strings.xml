@@ -11,6 +11,8 @@
     // Activity Settings
     <string name="iconStr">Icon</string>
     <string name="settingsStr">Settings</string>
+    <string name="gameStr">Game</string>
+    <string name="themeStr">Theme</string>
 
     // Fragment Themes
     <string name="switchDarkStr">Enable Dark Mode</string>
@@ -27,7 +29,5 @@
     <string name="incrementStr">Increment</string>
     <string name="bottomClockStr">BOTTOM CLOCK</string>
     <string name="startStr">Start</string>
-    <string name="gameStr">Game</string>
-    <string name="themeStr">Theme</string>
 
 </resources>
