@@ -13,7 +13,10 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class SettingsActivityTest {
 
-    @Rule @JvmField var activityRule: ActivityTestRule<SettingsActivity> = ActivityTestRule(SettingsActivity::class.java)
+    @Rule
+    @JvmField
+    var activityRule: ActivityTestRule<SettingsActivity> =
+        ActivityTestRule(SettingsActivity::class.java)
 
     @Test
     fun test_isActivityInView() {

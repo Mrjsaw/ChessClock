@@ -9,18 +9,16 @@ import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
-import android.view.View
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.util.EnumSet.allOf
-import java.util.regex.Matcher
-
 
 @RunWith(AndroidJUnit4::class)
 class NavigationTest {
 
-    @Rule @JvmField var activityRule: ActivityTestRule<MainActivity> = ActivityTestRule(MainActivity::class.java)
+    @Rule
+    @JvmField
+    var activityRule: ActivityTestRule<MainActivity> = ActivityTestRule(MainActivity::class.java)
 
     @Test
     fun test_navigation_to_settings() {
