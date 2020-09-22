@@ -43,7 +43,7 @@
             android:background="@drawable/drop_down_background"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:popupBackground="@drawable/theme_btn_background"
+            android:popupBackground="@drawable/popup_background"
             android:spinnerMode="dropdown"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
