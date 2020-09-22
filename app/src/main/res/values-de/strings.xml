@@ -13,8 +13,8 @@
     <string name="settingsStr">Einstellungen</string>
 
     // Fragment Themes
-    <string name="switchDarkStr">Nachtmodus aktivieren</string>
-    <string name="switchLightStr">Tagesmodus aktivieren</string>
+    <string name="switchDarkStr">Tagesmodus aktivierenNachtmodus aktivieren</string>
+    <string name="switchLightStr">Nachtmodus aktivieren</string>
     <string name="selfStartStr">Eigene Uhr starten, wenn angehalten</string>
 
     <string name="selectSoundStr">Signalton wählen…</string>

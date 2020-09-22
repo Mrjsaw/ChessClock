@@ -13,8 +13,8 @@
     <string name="settingsStr">设定值</string>
 
     // Fragment Themes
-    <string name="switchDarkStr">启用夜间模式</string>
-    <string name="switchLightStr">启用日间模式</string>
+    <string name="switchDarkStr">启用日间模式</string>
+    <string name="switchLightStr">启用夜间模式</string>
     <string name="selfStartStr">暂停时开始自己的时钟</string>
 
     <string name="selectSoundStr">选择声音…</string>

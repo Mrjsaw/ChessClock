@@ -13,8 +13,8 @@
     <string name="settingsStr">Paramètres</string>
 
     // Fragment Themes
-    <string name="switchDarkStr">Activer le mode nuit</string>
-    <string name="switchLightStr">Activer le mode jour</string>
+    <string name="switchDarkStr">Activer le mode jour</string>
+    <string name="switchLightStr">Activer le mode nuit</string>
     <string name="selfStartStr">Démarrer sa propre horloge en pause</string>
 
     <string name="selectSoundStr">Sélectionnez un son…</string>

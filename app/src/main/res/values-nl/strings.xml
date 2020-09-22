@@ -13,8 +13,8 @@
     <string name="settingsStr">Instellingen</string>
 
     // Fragment Themes
-    <string name="switchDarkStr">Schakel nachtmodus in</string>
-    <string name="switchLightStr">Schakel dagmodus in</string>
+    <string name="switchDarkStr">Schakel dagmodus in</string>
+    <string name="switchLightStr">Schakel nachtmodus in</string>
     <string name="selfStartStr">Start zelf je clock bij pauze</string>
 
     <string name="selectSoundStr">Selecteer geluid…</string>

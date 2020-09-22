@@ -13,8 +13,8 @@
     <string name="settingsStr">Настройки</string>
 
     // Fragment Themes
-    <string name="switchDarkStr">Включить ночной режим</string>
-    <string name="switchLightStr">Включить дневной режим</string>
+    <string name="switchDarkStr">Включить дневной режим</string>
+    <string name="switchLightStr">Включить ночной режим</string>
     <string name="selfStartStr">Запускать собственные часы при паузе</string>
 
     <string name="selectSoundStr">Выберите звук…</string>
