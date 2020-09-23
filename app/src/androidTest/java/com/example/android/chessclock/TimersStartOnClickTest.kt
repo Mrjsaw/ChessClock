@@ -1,11 +1,21 @@
 package com.example.android.chessclock
 
 import android.support.test.espresso.Espresso
+import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.UiController
+import android.support.test.espresso.ViewAction
+import android.support.test.espresso.ViewInteraction
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions
 import android.support.test.espresso.matcher.ViewMatchers
+import android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
+import android.util.Log
+import android.view.View
+import android.widget.TextView
+import org.hamcrest.Matcher
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -23,8 +33,44 @@ class TimersStartOnClickTest {
 
     @Before
     fun setBotClockStatValues(){
-        startValue = "15:00" // onView(withId(R.id.bot_clock)).toString()
-        nextValue = "09:59"
+        startValue = getText(onView(withId(R.id.bot_clock)))
+        val parts = startValue.split(":")
+        var min = parts[0].toInt()
+        var sec = parts[1].toInt()
+
+        Log.d(min.toString(), sec.toString())
+
+        val timeInSec = (min*60 + sec)-1
+
+        min = timeInSec/60
+        sec = timeInSec%60
+        var minutes = min.toString()
+        val seconds = sec.toString()
+
+        if (minutes.length == 1){
+            minutes = "0$minutes"
+        }
+
+        nextValue = "$minutes:$seconds"
+    }
+
+    private fun getText(matcher: ViewInteraction): String {
+        var text = String()
+        matcher.perform(object : ViewAction {
+            override fun getConstraints(): Matcher<View> {
+                return isAssignableFrom(TextView::class.java)
+            }
+
+            override fun getDescription(): String {
+                return "Text of the view"
+            }
+
+            override fun perform(uiController: UiController, view: View) {
+                val tv = view as TextView
+                text = tv.text.toString()
+            }
+        })
+    return text
     }
 
     /**
