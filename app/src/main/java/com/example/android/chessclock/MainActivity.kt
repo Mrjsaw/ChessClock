@@ -119,7 +119,6 @@ class MainActivity : AppCompatActivity() {
 
         selfStart = sharedPreferences.getBoolean("SELF_START", false)
 
-
         when (sharedPreferences.getString("TURN_SOUND", null)) {
             "Select a sound..." -> mediaPlayer?.reset()
             "Clear throat" -> mediaPlayer = MediaPlayer.create(this, R.raw.clear_throat)
@@ -172,7 +171,6 @@ class MainActivity : AppCompatActivity() {
     private fun pauseTimerBot() {
         if (this::countDownTimerBot.isInitialized) {
             countDownTimerBot.cancel()
-            // Switch primary colors when turn ends
             setColorsTopActive()
         }
     }
@@ -180,7 +178,6 @@ class MainActivity : AppCompatActivity() {
     private fun pauseTimerTop() {
         if (this::countDownTimerTop.isInitialized) {
             countDownTimerTop.cancel()
-            // Switch primary colors when turn ends
             setColorsBotActive()
         }
     }
@@ -230,7 +227,6 @@ class MainActivity : AppCompatActivity() {
         }
         countDownTimerTop.start()
 
-        // Switch primary colors only when top goes first
         setColorsTopActive()
 
         top_sq.isClickable = true
