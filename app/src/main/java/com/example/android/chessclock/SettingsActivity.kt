@@ -1,11 +1,15 @@
 package com.example.android.chessclock
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.fragment_settings.*
+import java.util.*
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var myPagerAdapter : MyFragmentPagerAdapter
@@ -26,8 +30,6 @@ class SettingsActivity : AppCompatActivity() {
         tabLayout.getTabAt(1)?.text = getString(R.string.themeStr)
     }
 
-    fun showTimePickerDialog(v: View) {
-        TimePickerFragment().show(supportFragmentManager, "timePicker")
     }
 
     /**

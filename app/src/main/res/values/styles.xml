@@ -20,7 +20,6 @@
     <style name="TabLayoutFontSize" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">20sp</item>
     </style>
-
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
