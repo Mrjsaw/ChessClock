@@ -2,7 +2,6 @@ package com.example.android.chessclock
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.media.MediaPlayer
@@ -132,7 +131,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun restartGame() {
         if (clockState == ClockStates.CLOCK_START) {
-            val dialog= AlertDialog.Builder(this)
+            val dialog = AlertDialog.Builder(this)
                 .setMessage("Restart?")
                 .setPositiveButton(getString(R.string.yesStr)) { _, _ -> // dialog, whichButton are never used
                     resetTimers()
@@ -142,11 +141,12 @@ class MainActivity : AppCompatActivity() {
                     // Closes dialog
                 }
                 .create()
-            dialog.setOnShowListener(DialogInterface.OnShowListener() {
-                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.colorActive));
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.colorActive));
-            });
-
+            dialog.setOnShowListener {
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getColor(R.color.colorActive))
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setTextColor(getColor(R.color.colorActive))
+            }
             dialog.show()
         }
     }
@@ -324,11 +324,12 @@ class MainActivity : AppCompatActivity() {
                 // Closes dialog
             }
             .create()
-        dialog.setOnShowListener(DialogInterface.OnShowListener() {
-            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.colorActive));
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.colorActive));
-        });
-
+        dialog.setOnShowListener {
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                .setTextColor(getColor(R.color.colorActive))
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                .setTextColor(getColor(R.color.colorActive))
+        }
         dialog.show()
     }
 }
