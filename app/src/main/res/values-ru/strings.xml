@@ -11,6 +11,8 @@
     // Activity Settings
     <string name="iconStr">Значок</string>
     <string name="settingsStr">Настройки</string>
+    <string name="gameStr">Игра</string>
+    <string name="themeStr">Тема</string>
 
     // Fragment Themes
     <string name="switchDarkStr">Включить дневной режим</string>

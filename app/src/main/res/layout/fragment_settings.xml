@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragmentSettingsLayoutFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-<LinearLayout
+
+    <LinearLayout
+            android:id="@+id/fragmentSettingsLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-        android:orientation="vertical">
+            android:orientation="vertical">
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
 
-            android:layout_marginTop="45dp"
-            android:letterSpacing="0.05"
-            android:text="@string/topClockStr"
-            android:textColor="#ABABAB"
-            android:textSize="20sp" />
+                android:layout_marginTop="45dp"
+                android:letterSpacing="0.05"
+                android:text="@string/topClockStr"
+                android:textColor="#ABABAB"
+                android:textSize="20sp" />
+
         <TableRow
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:background="#ABABAB"></TableRow>
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
 
             <TextView
                     android:layout_width="0dp"
@@ -39,29 +44,31 @@
                     android:textColor="@color/topClockText"
                     android:textSize="20dp"
                     android:textStyle="bold"></TextView>
+
             <TextView
                     android:id="@+id/top_time"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:gravity="end"
-                    android:text="15:00"
-                    android:onClick="showTimePickerDialog"
-                    android:textSize="20dp"
                     android:layout_marginRight="50dp"
-                    ></TextView>
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:onClick="showTimePickerDialog"
+                    android:text="15:00"
+                    android:textSize="20dp"></TextView>
         </LinearLayout>
+
         <TableRow
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:background="#ABABAB"></TableRow>
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
 
             <TextView
                     android:layout_width="0dp"
@@ -73,44 +80,47 @@
                     android:textColor="@color/topClockText"
                     android:textSize="20dp"
                     android:textStyle="bold"></TextView>
+
             <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="50dp"
+                    android:layout_weight="1"
                     android:gravity="end"
                     android:text="00:05"
-                    android:textSize="20dp"
-                    android:layout_marginRight="50dp"
-                    ></TextView>
+                    android:textSize="20dp"></TextView>
         </LinearLayout>
+
         <TableRow
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#ABABAB"></TableRow>
-
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-
-            android:layout_marginTop="45dp"
-            android:letterSpacing="0.05"
-            android:text="@string/bottomClockStr"
-            android:textColor="#ABABAB"
-            android:textSize="20sp" />
-        <TableRow
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:background="#ABABAB"></TableRow>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+
+                android:layout_marginTop="45dp"
+                android:letterSpacing="0.05"
+                android:text="@string/bottomClockStr"
+                android:textColor="#ABABAB"
+                android:textSize="20sp" />
+
+        <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:background="#ABABAB"></TableRow>
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
 
             <TextView
                     android:layout_width="0dp"
@@ -122,27 +132,29 @@
                     android:textColor="@color/topClockText"
                     android:textSize="20dp"
                     android:textStyle="bold"></TextView>
+
             <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="50dp"
+                    android:layout_weight="1"
                     android:gravity="end"
                     android:text="15:00"
-                    android:textSize="20dp"
-                    android:layout_marginRight="50dp"
-                    ></TextView>
+                    android:textSize="20dp"></TextView>
         </LinearLayout>
+
         <TableRow
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:background="#ABABAB"></TableRow>
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
 
             <TextView
                     android:layout_width="0dp"
@@ -154,21 +166,22 @@
                     android:textColor="@color/topClockText"
                     android:textSize="20dp"
                     android:textStyle="bold"></TextView>
+
             <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="50dp"
+                    android:layout_weight="1"
                     android:gravity="end"
                     android:text="00:05"
-                    android:textSize="20dp"
-                    android:layout_marginRight="50dp"
-                    ></TextView>
+                    android:textSize="20dp"></TextView>
         </LinearLayout>
+
         <TableRow
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:background="#ABABAB"></TableRow>
 
     </LinearLayout>

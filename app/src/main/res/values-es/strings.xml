@@ -11,6 +11,8 @@
     // Activity Settings
     <string name="iconStr">Icono</string>
     <string name="settingsStr">Configuraciones</string>
+    <string name="gameStr">Juego</string>
+    <string name="themeStr">Tema</string>
 
     // Fragment Themes
     <string name="switchDarkStr">Habilitar el modo día</string>

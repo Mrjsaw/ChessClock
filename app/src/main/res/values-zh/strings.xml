@@ -11,6 +11,8 @@
     // Activity Settings
     <string name="iconStr">图标</string>
     <string name="settingsStr">设定值</string>
+    <string name="gameStr">游戏</string>
+    <string name="themeStr">西玛</string>
 
     // Fragment Themes
     <string name="switchDarkStr">启用日间模式</string>
