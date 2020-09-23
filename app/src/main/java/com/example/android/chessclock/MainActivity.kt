@@ -14,8 +14,6 @@ import android.view.View
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_main.*
 
-const val START_TIME = 600 //change top/bot
-const val INCREMENT = 5 //change top/bot
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,15 +23,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var countDownTimerBot: CountDownTimer
     private lateinit var countDownTimerTop: CountDownTimer
-
-    var time_in_seconds_bot = START_TIME
-    var time_in_seconds_top = START_TIME
+    var tis = 500
+    var timeInSecondsBot = 0
+    var timeInSecondsTop = 0
 
     private var isNightModeOn: Boolean = false
     private var selfStart: Boolean = false
 
     private var mediaPlayer: MediaPlayer? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
@@ -44,7 +41,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val sharedPrefsEdit: SharedPreferences.Editor = sharedPreferences.edit()
-
+        timeInSecondsBot = sharedPreferences.getInt("BOT_TIME",900)
+        timeInSecondsTop = sharedPreferences.getInt("TOP_TIME",900)
+        top_clock.text = Clock(timeInSecondsTop).updateText()
+        bot_clock.text = Clock(timeInSecondsBot).updateText()
         /**
          * Set up new session
          */
@@ -91,16 +91,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun botCaseLogic() {
         when (clockState) {
-            null -> startTimerBot(time_in_seconds_bot)
-            ClockStates.CLOCK_START -> startTimerBot(time_in_seconds_bot) //add increments hier nog
+            null -> startTimerBot(timeInSecondsBot)
+            ClockStates.CLOCK_START -> startTimerBot(timeInSecondsBot) //add increments hier nog
             ClockStates.CLOCK_END -> resetTimers()
         }
     }
 
     private fun topCaseLogic() {
         when (clockState) {
-            null -> startTimerTop(time_in_seconds_top)
-            ClockStates.CLOCK_START -> startTimerTop(time_in_seconds_top) //add increments hier nog
+            null -> startTimerTop(timeInSecondsTop)
+            ClockStates.CLOCK_START -> startTimerTop(timeInSecondsTop) //add increments hier nog
             ClockStates.CLOCK_END -> resetTimers()
         }
     }
@@ -173,10 +173,11 @@ class MainActivity : AppCompatActivity() {
      * Set timers to new specified values
      */
     private fun resetTimers() {
+        val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         pauseTimerTop()
         pauseTimerBot()
-        time_in_seconds_bot = START_TIME
-        time_in_seconds_top = START_TIME
+        timeInSecondsBot = sharedPreferences.getInt("BOT_TIME",900)
+        timeInSecondsTop = sharedPreferences.getInt("TOP_TIME",900)
         updateTextUIBot()
         updateTextUITop()
     }
@@ -219,7 +220,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTick(p0: Long) {
-                time_in_seconds_bot = (p0 / 1000L).toInt()
+                timeInSecondsBot = (p0 / 1000L).toInt()
                 updateTextUIBot()
             }
         }
@@ -249,7 +250,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTick(p0: Long) {
-                time_in_seconds_top = (p0 / 1000L).toInt()
+                timeInSecondsTop = (p0 / 1000L).toInt()
                 updateTextUITop()
             }
         }
@@ -289,11 +290,11 @@ class MainActivity : AppCompatActivity() {
      * Update timers
      */
     private fun updateTextUIBot() {
-        bot_clock.text = Clock(time_in_seconds_bot).updateText()
+        bot_clock.text = Clock(timeInSecondsBot).updateText()
     }
 
     private fun updateTextUITop() {
-        top_clock.text = Clock(time_in_seconds_top).updateText()
+        top_clock.text = Clock(timeInSecondsTop).updateText()
     }
 
     /**
