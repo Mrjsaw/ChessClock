@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun restartGame() {
         if (clockState == ClockStates.CLOCK_START) {
-            AlertDialog.Builder(this)
+            val dialog = AlertDialog.Builder(this)
                 .setMessage("Restart?")
                 .setPositiveButton(getString(R.string.yesStr)) { _, _ -> // dialog, whichButton are never used
                     resetTimers()
@@ -140,7 +140,14 @@ class MainActivity : AppCompatActivity() {
                 .setNegativeButton(getString(R.string.noStr)) { _, _ -> // dialog, whichButton are never used
                     // Closes dialog
                 }
-                .show()
+                .create()
+            dialog.setOnShowListener {
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    .setTextColor(getColor(R.color.colorActive))
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setTextColor(getColor(R.color.colorActive))
+            }
+            dialog.show()
         }
     }
 
@@ -309,7 +316,7 @@ class MainActivity : AppCompatActivity() {
      * Show dialog to close when 'Android back button' pressed
      */
     override fun onBackPressed() {
-        AlertDialog.Builder(this)
+        val dialog = AlertDialog.Builder(this)
             .setMessage("Close?")
             .setPositiveButton(android.R.string.ok) { _, _ -> // dialog, whichButton are never used
                 super.onBackPressed()
@@ -317,6 +324,13 @@ class MainActivity : AppCompatActivity() {
             .setNegativeButton(android.R.string.cancel) { _, _ -> // dialog, whichButton are never used
                 // Closes dialog
             }
-            .show()
+            .create()
+        dialog.setOnShowListener {
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                .setTextColor(getColor(R.color.colorActive))
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                .setTextColor(getColor(R.color.colorActive))
+        }
+        dialog.show()
     }
 }
