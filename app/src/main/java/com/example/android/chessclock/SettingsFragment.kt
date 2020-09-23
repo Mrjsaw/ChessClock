@@ -47,10 +47,10 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
     fun loadData() {
-        top_time_s.text = secondsToTime(sharedPreferences?.getInt("TOP_TIME",650))
-        top_inc_s.text = secondsToTime(sharedPreferences?.getInt("TOP_INC",50))
-        bot_time_s.text =secondsToTime(sharedPreferences?.getInt("BOT_TIME",685))
-        bot_inc_s.text= secondsToTime(sharedPreferences?.getInt("BOT_INC",55))
+        top_time_s.text = secondsToTime(sharedPreferences?.getInt("TOP_TIME",900))
+        top_inc_s.text = secondsToTime(sharedPreferences?.getInt("TOP_INC",5))
+        bot_time_s.text =secondsToTime(sharedPreferences?.getInt("BOT_TIME",900))
+        bot_inc_s.text= secondsToTime(sharedPreferences?.getInt("BOT_INC",5))
     }
 
     private fun secondsToTime(timeSeconds: Int?): String {
