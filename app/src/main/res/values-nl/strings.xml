@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    // App Title
+    <string name="app_name">ChessClock</string>
+
+    // Activity Main
+    <string name="yesStr">Ja</string>
+    <string name="noStr">Nee</string>
+
+    // Activity Settings
+    <string name="iconStr">Icoon</string>
+    <string name="settingsStr">Instellingen</string>
+    <string name="gameStr">Spel</string>
+    <string name="themeStr">Thema</string>
+
+    // Fragment Themes
+    <string name="switchDarkStr">Schakel dagmodus in</string>
+    <string name="switchLightStr">Schakel nachtmodus in</string>
+    <string name="selfStartStr">Start zelf je clock bij pauze</string>
+
+    <string name="selectSoundStr">Selecteer geluid…</string>
+    <string name="clearTroatStr">Schraap keel</string>
+    <string name="mechClickStr">Mechanische tik</string>
+
+    // Fragment Settings
+    <string name="topClockStr">BOVENSTE KLOK</string>
+    <string name="timeStr">Tijd</string>
+    <string name="incrementStr">Toename</string>
+    <string name="bottomClockStr">ONDERSTE KLOK</string>
+    <string name="startStr">Start</string>
+
+</resources>

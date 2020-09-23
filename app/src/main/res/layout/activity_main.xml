@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/dashBoard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorDashboard"
@@ -18,18 +19,19 @@
             android:orientation="horizontal">
 
         <android.support.constraint.ConstraintLayout
+                android:id="@+id/topClockContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
             <TextView
 
-                    android:id="@+id/top_clock2"
+                    android:id="@+id/top_clock_mask"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:alpha="0.15"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:alpha="0.15"
                     android:fontFamily="@font/digital"
                     android:rotation="180"
                     android:text="88:88"
@@ -66,48 +68,56 @@
     </LinearLayout>
 
 
+    <LinearLayout
+            android:id="@+id/buttonBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingLeft="80dp"
+            android:paddingRight="80dp">
 
-        <LinearLayout
-                android:paddingRight="80dp"
-                android:paddingLeft="80dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-            <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+        <FrameLayout
+                android:id="@+id/settingsFrame"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:paddingTop="0dp"
-                    android:paddingBottom="0dp">
+                android:paddingBottom="0dp">
 
             <Button
+                    android:id="@+id/settings_button"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:id="@+id/settings_button"
                     android:background="@drawable/ic_settings_black_24dp">
 
             </Button>
-            </FrameLayout>
-            <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+        </FrameLayout>
+
+        <FrameLayout
+                android:id="@+id/pauseFrame"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
             <Button
+                    android:id="@+id/pause_button"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:id="@+id/pause_button"
                     android:background="@drawable/ic_pause_black_24dp">
 
             </Button>
-            </FrameLayout>
-            <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+        </FrameLayout>
+
+        <FrameLayout
+                android:id="@+id/restartFrame"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
             <Button
                     android:id="@+id/restart_button"
                     android:layout_width="50dp"
@@ -116,8 +126,7 @@
                     android:background="@drawable/ic_replay_black_24dp">
 
             </Button>
-            </FrameLayout>
-
+        </FrameLayout>
 
 
     </LinearLayout>
@@ -129,24 +138,24 @@
             android:layout_margin="10dp"
             android:layout_weight="5"
             android:background="@color/colorInactive"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
         <android.support.constraint.ConstraintLayout
+                android:id="@+id/botClockContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
             <TextView
-                    android:id="@+id/bot_clock2"
+                    android:id="@+id/bot_clock_mask"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:alpha="0.15"
                     android:fontFamily="@font/digital"
                     android:text="88:88"
                     android:textAlignment="center"
-                    android:alpha="0.15"
                     android:textColor="@color/bottomOffClockText"
                     android:textSize="130sp"
                     app:layout_constraintBottom_toBottomOf="parent"
