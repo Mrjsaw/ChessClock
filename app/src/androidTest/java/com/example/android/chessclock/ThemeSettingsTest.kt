@@ -34,7 +34,7 @@ class ThemeSettingsTest {
     private lateinit var nextValue: String
 
     @Before
-    fun setBotClockStatValues(){
+    fun setBotClockStatValues() {
         startValue = "15:00" // onView(withId(R.id.bot_clock)).toString()
         nextValue = "09:59"
     }
@@ -47,63 +47,79 @@ class ThemeSettingsTest {
 
     @Test
     fun test_selfStart_option_onTop() {
-        Espresso.onView(ViewMatchers.withId(R.id.settings_button)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.settings_button)).perform(click())
         Espresso.onView(ViewMatchers.withText(getResourceString(R.string.themeStr)))
-            .perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.self_start_check)).perform(ViewActions.click())
+            .perform(click())
+        Espresso.onView(ViewMatchers.withId(R.id.self_start_check)).perform(click())
         Espresso.pressBack()
-        Espresso.onView(ViewMatchers.withId(R.id.top_sq)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.top_sq)).perform(click())
         Espresso.onView(ViewMatchers.withId(R.id.top_clock))
             .check(ViewAssertions.matches(ViewMatchers.withText(nextValue)))
-        Espresso.onView(ViewMatchers.withId(R.id.settings_button)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.settings_button)).perform(click())
         Espresso.onView(ViewMatchers.withText(getResourceString(R.string.themeStr)))
-            .perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.self_start_check)).perform(ViewActions.click())
+            .perform(click())
+        Espresso.onView(ViewMatchers.withId(R.id.self_start_check)).perform(click())
     }
 
     @Test
     fun test_selfStart_option_onBot() {
-        Espresso.onView(ViewMatchers.withId(R.id.settings_button)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.settings_button)).perform(click())
         Espresso.onView(ViewMatchers.withText(getResourceString(R.string.themeStr)))
-            .perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.self_start_check)).perform(ViewActions.click())
+            .perform(click())
+        Espresso.onView(ViewMatchers.withId(R.id.self_start_check)).perform(click())
         Espresso.pressBack()
-        Espresso.onView(ViewMatchers.withId(R.id.bot_sq)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.bot_sq)).perform(click())
         Espresso.onView(ViewMatchers.withId(R.id.bot_clock))
             .check(ViewAssertions.matches(ViewMatchers.withText(nextValue)))
-        Espresso.onView(ViewMatchers.withId(R.id.settings_button)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.settings_button)).perform(click())
         Espresso.onView(ViewMatchers.withText(getResourceString(R.string.themeStr)))
-            .perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.self_start_check)).perform(ViewActions.click())
+            .perform(click())
+        Espresso.onView(ViewMatchers.withId(R.id.self_start_check)).perform(click())
     }
 
     @Test
     fun test_dark_mode() {
-        Espresso.onView(ViewMatchers.withId(R.id.settings_button)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.settings_button)).perform(click())
         Espresso.onView(ViewMatchers.withText(getResourceString(R.string.themeStr)))
-            .perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.action_theme)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.action_theme)).perform(ViewActions.click())
+            .perform(click())
+        Espresso.onView(ViewMatchers.withId(R.id.action_theme)).perform(click())
+        Espresso.onView(ViewMatchers.withId(R.id.action_theme)).perform(click())
     }
 
     @Test
     fun test_sound_selection() {
-        Espresso.onView(ViewMatchers.withId(R.id.settings_button)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.settings_button)).perform(click())
         Espresso.onView(ViewMatchers.withText(getResourceString(R.string.themeStr)))
-            .perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.drop_down)).perform(ViewActions.click())
+            .perform(click())
+        Espresso.onView(ViewMatchers.withId(R.id.drop_down)).perform(click())
         onData(anything()).atPosition(1).perform(click());
-        onView(withId(R.id.drop_down)).check(matches(withSpinnerText(containsString(getResourceString(R.string.clearTroatStr)))));
+        onView(withId(R.id.drop_down)).check(
+            matches(
+                withSpinnerText(
+                    containsString(
+                        getResourceString(R.string.clearTroatStr)
+                    )
+                )
+            )
+        );
         Espresso.pressBack()
-        Espresso.onView(ViewMatchers.withId(R.id.bot_sq)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.bot_sq)).perform(click())
 
-        Espresso.onView(ViewMatchers.withId(R.id.settings_button)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.settings_button)).perform(click())
         Espresso.onView(ViewMatchers.withText(getResourceString(R.string.themeStr)))
-            .perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.drop_down)).perform(ViewActions.click())
+            .perform(click())
+        Espresso.onView(ViewMatchers.withId(R.id.drop_down)).perform(click())
         onData(anything()).atPosition(2).perform(click());
-        onView(withId(R.id.drop_down)).check(matches(withSpinnerText(containsString(getResourceString(R.string.mechClickStr)))));
+        onView(withId(R.id.drop_down)).check(
+            matches(
+                withSpinnerText(
+                    containsString(
+                        getResourceString(R.string.mechClickStr)
+                    )
+                )
+            )
+        );
         Espresso.pressBack()
-        Espresso.onView(ViewMatchers.withId(R.id.top_sq)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.top_sq)).perform(click())
     }
 }
