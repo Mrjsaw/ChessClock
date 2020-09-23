@@ -67,10 +67,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         /**
-         * Switch cases on what to do on top / bot click,
-         * checking for 'selfStart' setting
-         *  - startTimer top/bot
-         *  - resetTimers on game end
+         * Clock listeners checking for 'selfStart' setting and starting caseLogic
          */
         top_sq.setOnClickListener {
             if (selfStart && clockState == null) {
@@ -89,6 +86,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Switch cases on what to do on top / bot click,
+     *  - startTimer top/bot
+     *  - resetTimers on game end
+     */
     private fun botCaseLogic() {
         when (clockState) {
             null -> startTimerBot(timeInSecondsBot)
@@ -110,16 +112,12 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onResume() {
         super.onResume()
-        top_sq.setBackgroundColor(getColor(R.color.colorInactive))
-        bot_sq.setBackgroundColor(getColor(R.color.colorInactive))
-        top_clock.setTextColor(getColor(R.color.colorInactiveText))
-        bot_clock.setTextColor(getColor(R.color.colorInactiveText))
+        setColorClocksToNeutral()
         dashBoard.setBackgroundColor(getColor(R.color.colorDashboard))
 
         val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
 
         selfStart = sharedPreferences.getBoolean("SELF_START", false)
-
 
         when (sharedPreferences.getString("TURN_SOUND", null)) {
             "Select a sound..." -> mediaPlayer?.reset()
@@ -137,14 +135,7 @@ class MainActivity : AppCompatActivity() {
                 .setMessage("Restart?")
                 .setPositiveButton(getString(R.string.yesStr)) { _, _ -> // dialog, whichButton are never used
                     resetTimers()
-                    top_sq.setBackgroundColor(getColor(R.color.colorInactive))
-                    bot_sq.setBackgroundColor(getColor(R.color.colorInactive))
-                    top_clock.setTextColor(getColor(R.color.colorInactiveText))
-                    bot_clock.setTextColor(getColor(R.color.colorInactiveText))
-                    top_sq.isClickable = true
-                    bot_sq.isClickable = true
-                    clockState = null
-                    pause_button.visibility = View.GONE
+                    setColorClocksToNeutral()
                 }
                 .setNegativeButton(getString(R.string.noStr)) { _, _ -> // dialog, whichButton are never used
                     // Closes dialog
@@ -159,14 +150,7 @@ class MainActivity : AppCompatActivity() {
     private fun pauseState() {
         pauseTimerTop()
         pauseTimerBot()
-        top_sq.isClickable = true
-        bot_sq.isClickable = true
-        top_sq.setBackgroundColor(getColor(R.color.colorInactive))
-        bot_sq.setBackgroundColor(getColor(R.color.colorInactive))
-        top_clock.setTextColor(getColor(R.color.colorInactiveText))
-        bot_clock.setTextColor(getColor(R.color.colorInactiveText))
-        pause_button.visibility = View.GONE
-        clockState = null
+        setColorClocksToNeutral()
     }
 
     /**
@@ -188,22 +172,14 @@ class MainActivity : AppCompatActivity() {
     private fun pauseTimerBot() {
         if (this::countDownTimerBot.isInitialized) {
             countDownTimerBot.cancel()
-            // Switch primary colors when turn ends
-            top_sq.setBackgroundColor(getColor(R.color.colorActive))
-            bot_sq.setBackgroundColor(getColor(R.color.colorInactive))
-            top_clock.setTextColor(getColor(R.color.colorActiveText))
-            bot_clock.setTextColor(getColor(R.color.colorInactiveText))
+            setColorsTopActive()
         }
     }
 
     private fun pauseTimerTop() {
         if (this::countDownTimerTop.isInitialized) {
             countDownTimerTop.cancel()
-            // Switch primary colors when turn ends
-            bot_sq.setBackgroundColor(getColor(R.color.colorActive))
-            top_sq.setBackgroundColor(getColor(R.color.colorInactive))
-            bot_clock.setTextColor(getColor(R.color.colorActiveText))
-            top_clock.setTextColor(getColor(R.color.colorInactiveText))
+            setColorsBotActive()
         }
     }
 
@@ -226,11 +202,7 @@ class MainActivity : AppCompatActivity() {
         }
         countDownTimerBot.start()
 
-        bot_sq.setBackgroundColor(getColor(R.color.colorActive))
-        bot_clock.setTextColor(getColor(R.color.colorActiveText))
-
-        top_sq.setBackgroundColor(getColor(R.color.colorInactive))
-        top_clock.setTextColor(getColor(R.color.colorInactiveText))
+        setColorsBotActive()
 
         top_sq.isClickable = false
         bot_sq.isClickable = true
@@ -256,12 +228,7 @@ class MainActivity : AppCompatActivity() {
         }
         countDownTimerTop.start()
 
-        // Switch primary colors only when top goes first
-        top_sq.setBackgroundColor(getColor(R.color.colorActive))
-        top_clock.setTextColor(getColor(R.color.colorActiveText))
-
-        bot_clock.setTextColor(getColor(R.color.colorInactiveText))
-        bot_sq.setBackgroundColor(getColor(R.color.colorInactive))
+        setColorsTopActive()
 
         top_sq.isClickable = true
         bot_sq.isClickable = false
@@ -295,6 +262,34 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateTextUITop() {
         top_clock.text = Clock(timeInSecondsTop).updateText()
+    }
+
+    /**
+     * Set colors to indicate next play
+     */
+    private fun setColorsTopActive() {
+        top_sq.setBackgroundColor(getColor(R.color.colorActive))
+        bot_sq.setBackgroundColor(getColor(R.color.colorInactive))
+        top_clock.setTextColor(getColor(R.color.colorActiveText))
+        bot_clock.setTextColor(getColor(R.color.colorInactiveText))
+    }
+
+    private fun setColorsBotActive() {
+        bot_sq.setBackgroundColor(getColor(R.color.colorActive))
+        top_sq.setBackgroundColor(getColor(R.color.colorInactive))
+        bot_clock.setTextColor(getColor(R.color.colorActiveText))
+        top_clock.setTextColor(getColor(R.color.colorInactiveText))
+    }
+
+    private fun setColorClocksToNeutral() {
+        top_sq.setBackgroundColor(getColor(R.color.colorInactive))
+        bot_sq.setBackgroundColor(getColor(R.color.colorInactive))
+        top_clock.setTextColor(getColor(R.color.colorInactiveText))
+        bot_clock.setTextColor(getColor(R.color.colorInactiveText))
+        top_sq.isClickable = true
+        bot_sq.isClickable = true
+        clockState = null
+        pause_button.visibility = View.GONE
     }
 
     /**
