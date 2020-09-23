@@ -23,13 +23,12 @@ class NavigationTest {
     @Test
     fun test_navigation_to_settings() {
         onView(withId(R.id.settings_button)).perform(click())
-        onView(withId(R.id.settingsLayout)).check(matches(isDisplayed()))
+        onView(withId(R.id.activitySettingsLayout)).check(matches(isDisplayed()))
     }
 
     @Test
     fun test_backPress_toMainActivity() {
         onView(withId(R.id.settings_button)).perform(click())
-        onView(withId(R.id.settingsLayout)).check(matches(isDisplayed()))
         pressBack()
         onView(withId(R.id.dashBoard)).check(matches(isDisplayed()))
     }
@@ -37,7 +36,7 @@ class NavigationTest {
     // How to get string resources
     private fun getResourceString(id: Int): String? {
         val targetContext: Context = InstrumentationRegistry.getTargetContext()
-        return targetContext.getResources().getString(id)
+        return targetContext.resources.getString(id)
     }
 
     // Where to find tab id's
@@ -47,6 +46,6 @@ class NavigationTest {
         onView(withText(getResourceString(R.string.themeStr))).perform(click())
         onView(withId(R.id.themeLayout)).check(matches(isDisplayed()))
         onView(withText(getResourceString(R.string.gameStr))).perform(click())
-        onView(withId(R.id.settingsLayoutFrame)).check(matches(isDisplayed()))
+        onView(withId(R.id.fragmentSettingsLayoutFrame)).check(matches(isDisplayed()))
     }
 }

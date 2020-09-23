@@ -20,7 +20,7 @@ class SettingsActivityTest {
 
     @Test
     fun test_isActivityInView() {
-        onView(withId(R.id.settingsLayout)).check(matches(isDisplayed()))
+        onView(withId(R.id.activitySettingsLayout)).check(matches(isDisplayed()))
     }
 
     @Test
