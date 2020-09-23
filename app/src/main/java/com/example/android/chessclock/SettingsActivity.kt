@@ -30,8 +30,6 @@ class SettingsActivity : AppCompatActivity() {
         tabLayout.getTabAt(1)?.text = getString(R.string.themeStr)
     }
 
-    }
-
     /**
      * Return to MainActivity
      */

@@ -14,7 +14,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-
                 android:layout_marginTop="45dp"
                 android:letterSpacing="0.05"
                 android:text="@string/topClockStr"
@@ -54,7 +53,6 @@
                     android:gravity="end"
                     android:text="15:00"
                     android:textSize="20sp"
-                    android:layout_marginRight="50dp"
                     ></TextView>
 
         </LinearLayout>
