@@ -16,14 +16,13 @@ class SettingsFragment : Fragment() {
 
     private var sharedPreferences: SharedPreferences? = null
     private var sharedPrefsEdit: SharedPreferences.Editor? = null
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         sharedPreferences =
             this.activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-//          sharedPrefsEdit = sharedPreferences?.edit()
+          sharedPrefsEdit = sharedPreferences?.edit()
 
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
