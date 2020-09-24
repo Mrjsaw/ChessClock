@@ -29,6 +29,10 @@
     <string name="incrementStr">Increment</string>
     <string name="bottomClockStr">BOTTOM CLOCK</string>
     <string name="startStr">Start</string>
+
+    // Time Picker
+    <string name="setTime">Set time</string>
+    <string name="cancel">Cancel</string>
     <string name="timeNotation" translatable="false">%1$s:%2$s</string>
 
 </resources>

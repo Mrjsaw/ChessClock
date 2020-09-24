@@ -106,8 +106,8 @@ public class MyTimePickerDialog extends AlertDialog implements OnClickListener,
         mCalendar = Calendar.getInstance();
         updateTitle(mInitialHourOfDay, mInitialMinute, mInitialSeconds);
 
-        setButton("Set Time", this);
-        setButton2("Cancel", (OnClickListener) null);
+        setButton(context.getString(R.string.setTime), this);
+        setButton2(context.getString(R.string.cancel), (OnClickListener) null);
         //setIcon(android.R.drawable.ic_dialog_time);
 
         LayoutInflater inflater =
