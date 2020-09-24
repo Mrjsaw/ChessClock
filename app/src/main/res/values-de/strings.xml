@@ -30,4 +30,8 @@
     <string name="bottomClockStr">UNTEN UHR</string>
     <string name="startStr">Anfangen</string>
 
+    // Time Picker
+    <string name="setTime">Zeit einstellen</string>
+    <string name="cancel">Stornieren</string>
+
 </resources>

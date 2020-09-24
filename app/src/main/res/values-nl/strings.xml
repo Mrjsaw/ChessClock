@@ -30,4 +30,8 @@
     <string name="bottomClockStr">ONDERSTE KLOK</string>
     <string name="startStr">Start</string>
 
+    // Time Picker
+    <string name="setTime">Instellen</string>
+    <string name="cancel">Annuleer</string>
+
 </resources>

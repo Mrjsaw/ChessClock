@@ -2,8 +2,6 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
-
         <item name="colorActive">@color/colorActive</item>
         <item name="colorInactive">@color/colorInactive</item>
 
@@ -17,10 +15,17 @@
         <item name="bottomOffClockText">@color/bottomOffClockText</item>
     </style>
 
+    <!--    Tab Layout-->
     <style name="TabLayoutFontSize" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">20sp</item>
     </style>
+
+    <!--    Splash Theme-->
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <style name="MyAppTheme.NumberPicker" parent="AppTheme">
+        <item name="colorControlNormal"> @color/colorActive </item>
     </style>
 </resources>

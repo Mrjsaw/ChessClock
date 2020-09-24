@@ -34,7 +34,7 @@ class ThemesFragment : Fragment() {
          * Load sharedPreferenced & set up fragment
          */
         val action_theme = view.findViewById<Button>(R.id.action_theme)
-        checkBox = view.findViewById(R.id.self_start_check)
+       checkBox = view.findViewById(R.id.self_start_check)
         if (sharedPreferences != null) {
             isNightModeOn = sharedPreferences.getBoolean("BOOLEAN_KEY", false)
             action_theme.text = resources.getString(R.string.switchDarkStr)

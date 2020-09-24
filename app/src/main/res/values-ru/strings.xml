@@ -30,4 +30,8 @@
     <string name="bottomClockStr">НИЖНИЕ ЧАСЫ</string>
     <string name="startStr">Начало</string>
 
+    // Time Picker
+    <string name="setTime">Настроить</string>
+    <string name="cancel">Отмена</string>
+
 </resources>

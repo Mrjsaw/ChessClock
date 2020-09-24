@@ -30,4 +30,8 @@
     <string name="bottomClockStr">HORLOGE INFERIEURE</string>
     <string name="startStr">Début</string>
 
+    // Time Picker
+    <string name="setTime">Régler</string>
+    <string name="cancel">Annuler</string>
+
 </resources>
