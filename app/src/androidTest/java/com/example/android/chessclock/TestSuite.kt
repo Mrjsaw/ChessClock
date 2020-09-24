@@ -10,6 +10,7 @@ import org.junit.runners.Suite
     NavigationTest::class,
     SettingsActivityTest::class,
     ThemeSettingsTest::class,
-    TimersStartOnClickTest::class
+    TimersStartOnClickTest::class,
+    TimePickerTest::class
 )
 class TestSuite
