@@ -25,7 +25,12 @@
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
+    <!-- Number Picker-->
     <style name="MyAppTheme.NumberPicker" parent="AppTheme">
         <item name="colorControlNormal"> @color/colorActive </item>
+    </style>
+
+    <style name="ListViewCells" parent="AppTheme">
+        <item name="android:textSize">40sp</item>
     </style>
 </resources>

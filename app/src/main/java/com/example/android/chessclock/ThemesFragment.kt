@@ -13,10 +13,7 @@ import kotlinx.android.synthetic.main.fragment_themes.*
 
 class ThemesFragment : Fragment() {
 
-    private var isNightModeOn: Boolean = false
-    private var selfStart: Boolean = false
-
-    private lateinit var checkBox: CheckBox
+    private lateinit var listView: ListView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,96 +22,18 @@ class ThemesFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_themes, container, false)
 
-        // sharedPreferences
-        val sharedPreferences =
-            this.activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val sharedPrefsEdit: SharedPreferences.Editor? = sharedPreferences?.edit()
-
-        /**
-         * Load sharedPreferenced & set up fragment
-         */
-        val action_theme = view.findViewById<Button>(R.id.action_theme)
-       checkBox = view.findViewById(R.id.self_start_check)
-        if (sharedPreferences != null) {
-            isNightModeOn = sharedPreferences.getBoolean("BOOLEAN_KEY", false)
-            action_theme.text = resources.getString(R.string.switchDarkStr)
-            selfStart = sharedPreferences.getBoolean("SELF_START", false)
-            checkBox.isChecked = selfStart
-        }
-        if (isNightModeOn) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            action_theme.text = resources.getString(R.string.switchLightStr)
-        }
-
-        checkBox.setOnClickListener {
-            if (selfStart) {
-                selfStart = false
-                self_start_check.isChecked = false
-                sharedPrefsEdit?.putBoolean("SELF_START", false)
-                sharedPrefsEdit?.apply()
-            } else {
-                selfStart = true
-                self_start_check.isChecked = true
-                sharedPrefsEdit?.putBoolean("SELF_START", true)
-                sharedPrefsEdit?.apply()
-            }
-        }
-
-        /**
-         * Switch between light and dark theme
-         */
-        action_theme.setOnClickListener {
-            if (isNightModeOn) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                sharedPrefsEdit?.putBoolean("BOOLEAN_KEY", false)
-                sharedPrefsEdit?.apply()
-                isNightModeOn = false
-                action_theme.text = resources.getString(R.string.switchLightStr)
-                this.activity?.recreate()
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                sharedPrefsEdit?.putBoolean("BOOLEAN_KEY", true)
-                sharedPrefsEdit?.apply()
-                isNightModeOn = true
-                action_theme.text = resources.getString(R.string.switchDarkStr)
-                this.activity?.recreate()
-            }
-        }
-
-        /**
-         * Sound theme list
-         */
-        val spinner = view.findViewById<Spinner>(R.id.drop_down)
-        val textView = view.findViewById<TextView>(R.id.drop_down_text)
-
-        val sounds = arrayListOf(
-            resources.getString(R.string.selectSoundStr),
-            resources.getString(R.string.clearTroatStr),
-            resources.getString(R.string.mechClickStr))
-
-        spinner?.adapter = ArrayAdapter(
-            activity?.applicationContext,
-            android.R.layout.simple_list_item_1,
-            sounds
-        )
-        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-//                textView.text = "Select a sound..."
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-//                textView.text = sounds[position]
-                sharedPrefsEdit?.putString("TURN_SOUND", sounds[position])
-                sharedPrefsEdit?.apply()
-            }
-        }
-
         return view
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        listView = themes_list_view
+        val listItems = resources.getStringArray(R.array.themesArrayList);
+        val adapter = ArrayAdapter(activity, R.layout.themes_list_item,listItems)
+        listView.adapter = adapter
+        listView.setOnItemClickListener { adapterView, view, position: Int, id: Long ->
+            //do smth
+        }
+        super.onActivityCreated(savedInstanceState)
     }
 
     companion object {

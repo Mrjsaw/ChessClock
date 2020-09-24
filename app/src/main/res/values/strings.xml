@@ -35,4 +35,16 @@
     <string name="cancel">Cancel</string>
     <string name="timeNotation" translatable="false">%1$s:%2$s</string>
 
+    // Theme List
+    <string-array name="themesArrayList">
+        <item>Classic</item>
+        <item>Wood</item>
+        <item>Digital</item>
+        <item name="frost">Frost</item>
+        <item name="cassis">Cassis</item>
+        <item name="urban">Urban</item>
+        <item name="groovy">Groovy</item>
+        <item name="retro">Retro</item>
+    </string-array>
+
 </resources>
