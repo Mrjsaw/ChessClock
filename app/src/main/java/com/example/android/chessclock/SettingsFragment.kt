@@ -47,12 +47,6 @@ class SettingsFragment : Fragment() {
         }
     }
 
-//    private fun loadData() {
-//        top_time_s.text = secondsToTime(sharedPreferences?.getInt("TOP_TIME", 900))
-//        top_inc_s.text = secondsToTime(sharedPreferences?.getInt("TOP_INC", 5))
-//        bot_time_s.text = secondsToTime(sharedPreferences?.getInt("BOT_TIME", 900))
-//        bot_inc_s.text = secondsToTime(sharedPreferences?.getInt("BOT_INC", 5))
-//    }
 
     private fun secondsToTime(timeSeconds: Int?): String {
         if (timeSeconds != null) {
