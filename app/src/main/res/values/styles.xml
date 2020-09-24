@@ -33,4 +33,7 @@
     <style name="ListViewCells" parent="AppTheme">
         <item name="android:textSize">40sp</item>
     </style>
+    <style name="Switch" parent="AppTheme">
+        <item name="colorControlActivated">@color/colorActive</item>
+    </style>
 </resources>

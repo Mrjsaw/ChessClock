@@ -13,8 +13,10 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
+            android:gravity="center_vertical"
             app:layout_constraintBottom_toBottomOf="@+id/soundMenuPicker"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/colorInactive">
     <TextView
             android:layout_alignParentLeft="true"
             android:id="@+id/textView"
@@ -22,15 +24,17 @@
             android:layout_height="wrap_content"
             android:text="Dark mode"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/bottomClockText"/>
+            android:textColor="@color/topClockText"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
-    <Switch
-            android:layout_alignParentRight="true"
-            android:textAlignment="viewEnd"
-            android:id="@+id/switch1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+        <Switch
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textAlignment="viewEnd"
+                android:theme="@style/Switch"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -39,21 +43,25 @@
             android:layout_height="50dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/themes_list_view"
-            app:layout_constraintTop_toBottomOf="@+id/darkModeSwitch">
+            app:layout_constraintTop_toBottomOf="@+id/darkModeSwitch"
+            android:background="@color/colorInactive"
+            >
         <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text="Sounds"
                 android:layout_marginLeft="10dp"
-                android:textColor="@color/bottomClockText"/>
+                android:textColor="@color/topClockText"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
         <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="25dp"
-                android:layout_height="20dp"
-                android:textSize="12sp"
+                android:layout_height="30dp"
+                android:textSize="14sp"
                 android:text="Material" />
     </LinearLayout>
 

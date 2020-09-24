@@ -45,6 +45,10 @@
         <item name="urban">Urban</item>
         <item name="groovy">Groovy</item>
         <item name="retro">Retro</item>
+        <item name="name">long named theme</item>
+        <item name="named">named</item>
+        <item name="nasme">long named themesfsgssgsgsgsshs</item>
+        <item name="shgs">nameshgshshshhshshshsd</item>
     </string-array>
 
 </resources>
