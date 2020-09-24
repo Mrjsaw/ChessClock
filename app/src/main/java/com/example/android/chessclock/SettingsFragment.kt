@@ -40,8 +40,9 @@ class SettingsFragment : Fragment() {
         setTimePickerSpinners()
 
         start_button.setOnClickListener {
-            //TODO: Make sure paused MainActivity closes
+            //TODO: check performance
             val intent = Intent(activity, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent)
         }
     }
@@ -55,7 +56,7 @@ class SettingsFragment : Fragment() {
 
     private fun secondsToTime(timeSeconds: Int?): String {
         if (timeSeconds != null) {
-            if (timeSeconds > 60) {
+            if (timeSeconds >= 60) {
                 val mins = timeSeconds / 60
                 val secs = timeSeconds % 60
                 var minutes = mins.toString()
