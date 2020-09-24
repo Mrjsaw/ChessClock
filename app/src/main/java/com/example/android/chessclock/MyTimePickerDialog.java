@@ -17,8 +17,6 @@
 
 package com.example.android.chessclock;
 
-import java.util.Calendar;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,8 +27,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 
-
 import com.example.android.chessclock.TimePicker.OnTimeChangedListener;
+
+import java.util.Calendar;
 
 /**
  * A dialog that prompts the user for the time of day using a {@link TimePicker}.
@@ -45,9 +44,9 @@ public class MyTimePickerDialog extends AlertDialog implements OnClickListener,
     public interface OnTimeSetListener {
 
         /**
-         * @param view The view associated with this listener.
+         * @param view      The view associated with this listener.
          * @param hourOfDay The hour that was set.
-         * @param minute The minute that was set.
+         * @param minute    The minute that was set.
          */
         void onTimeSet(TimePicker view, int hourOfDay, int minute, int seconds);
     }
@@ -68,10 +67,10 @@ public class MyTimePickerDialog extends AlertDialog implements OnClickListener,
     boolean mIs24HourView;
 
     /**
-     * @param context Parent.
-     * @param callBack How parent is notified.
-     * @param hourOfDay The initial hour.
-     * @param minute The initial minute.
+     * @param context      Parent.
+     * @param callBack     How parent is notified.
+     * @param hourOfDay    The initial hour.
+     * @param minute       The initial minute.
      * @param is24HourView Whether this is a 24 hour view, or AM/PM.
      */
     public MyTimePickerDialog(Context context,
@@ -83,11 +82,11 @@ public class MyTimePickerDialog extends AlertDialog implements OnClickListener,
     }
 
     /**
-     * @param context Parent.
-     * @param theme the theme to apply to this dialog
-     * @param callBack How parent is notified.
-     * @param hourOfDay The initial hour.
-     * @param minute The initial minute.
+     * @param context      Parent.
+     * @param theme        the theme to apply to this dialog
+     * @param callBack     How parent is notified.
+     * @param hourOfDay    The initial hour.
+     * @param minute       The initial minute.
      * @param is24HourView Whether this is a 24 hour view, or AM/PM.
      */
     public MyTimePickerDialog(Context context,
@@ -106,8 +105,8 @@ public class MyTimePickerDialog extends AlertDialog implements OnClickListener,
         mCalendar = Calendar.getInstance();
         updateTitle(mInitialHourOfDay, mInitialMinute, mInitialSeconds);
 
-        setButton("Set Time", this);
-        setButton2("Cancel", (OnClickListener) null);
+        setButton(context.getString(R.string.setTime), this);
+        setButton2(context.getString(R.string.cancel), (OnClickListener) null);
         //setIcon(android.R.drawable.ic_dialog_time);
 
         LayoutInflater inflater =
@@ -142,7 +141,7 @@ public class MyTimePickerDialog extends AlertDialog implements OnClickListener,
     }
 
     private void updateTitle(int hour, int minute, int seconds) {
-      //use my own title
+        //use my own title
     }
 
     public void updateTitle(String title) {

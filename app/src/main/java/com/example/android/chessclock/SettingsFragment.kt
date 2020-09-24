@@ -5,8 +5,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
-import android.util.Log.INFO
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,21 +20,23 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         sharedPreferences =
             this.activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        sharedPrefsEdit = sharedPreferences?.edit()
-
+          sharedPrefsEdit = sharedPreferences?.edit()
 
         return inflater.inflate(R.layout.fragment_settings, container, false)
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        loadData()
         super.onActivityCreated(savedInstanceState)
+        top_time_s.text = secondsToTime(sharedPreferences?.getInt("TOP_TIME", 900))
+        top_inc_s.text = secondsToTime(sharedPreferences?.getInt("TOP_INC", 5))
+        bot_time_s.text = secondsToTime(sharedPreferences?.getInt("BOT_TIME", 900))
+        bot_inc_s.text = secondsToTime(sharedPreferences?.getInt("BOT_INC", 5))
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setTimePickerSpinners()
 
         start_button.setOnClickListener {
@@ -44,14 +44,14 @@ class SettingsFragment : Fragment() {
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
         }
-        super.onViewCreated(view, savedInstanceState)
     }
-    fun loadData() {
-        top_time_s.text = secondsToTime(sharedPreferences?.getInt("TOP_TIME",900))
-        top_inc_s.text = secondsToTime(sharedPreferences?.getInt("TOP_INC",5))
-        bot_time_s.text =secondsToTime(sharedPreferences?.getInt("BOT_TIME",900))
-        bot_inc_s.text= secondsToTime(sharedPreferences?.getInt("BOT_INC",5))
-    }
+
+//    private fun loadData() {
+//        top_time_s.text = secondsToTime(sharedPreferences?.getInt("TOP_TIME", 900))
+//        top_inc_s.text = secondsToTime(sharedPreferences?.getInt("TOP_INC", 5))
+//        bot_time_s.text = secondsToTime(sharedPreferences?.getInt("BOT_TIME", 900))
+//        bot_inc_s.text = secondsToTime(sharedPreferences?.getInt("BOT_INC", 5))
+//    }
 
     private fun secondsToTime(timeSeconds: Int?): String {
         if (timeSeconds != null) {
@@ -76,6 +76,7 @@ class SettingsFragment : Fragment() {
         }
         return ""
     }
+
     private fun setTimePickerSpinners() {
         top_time_s.setOnClickListener {
             showTimePickerDialog(it, "Top Time")
@@ -90,48 +91,59 @@ class SettingsFragment : Fragment() {
             showTimePickerDialog(it, "Bottom Increment")
         }
     }
+
     private fun showTimePickerDialog(v: View, title: String) {
         val now = Calendar.getInstance()
-        var tv = v as TextView
+        val tv = v as TextView
         val secondsTv = tv.text.split(':')[1].toInt()
         val minutesTv = tv.text.split(':')[0].toInt()
-        val mTimePicker = MyTimePickerDialog(activity,
+        val mTimePicker = MyTimePickerDialog(
+            activity,
             { _, _, minute, seconds ->
                 var secs = seconds.toString()
                 var mins = minute.toString()
-                if(seconds < 10) {
+                if (seconds < 10) {
                     secs = "0$seconds"
                 }
-                if(minute < 10) {
+                if (minute < 10) {
                     mins = "0$minute"
                 }
-                var totalTimeInSeconds = mins.toInt() * 60 + secs.toInt()
-                when(title){
-                    "Top Time"-> {
+                val totalTimeInSeconds = mins.toInt() * 60 + secs.toInt()
+                when (title) {
+                    "Top Time" -> {
                         sharedPrefsEdit?.putInt("TOP_TIME", totalTimeInSeconds)
                         sharedPrefsEdit?.apply()
                     }
-                    "Bottom Time"-> {
+                    "Bottom Time" -> {
                         sharedPrefsEdit?.putInt("BOT_TIME", totalTimeInSeconds)
                         sharedPrefsEdit?.apply()
                     }
-                    "Top Increment"-> {
+                    "Top Increment" -> {
                         sharedPrefsEdit?.putInt("TOP_INC", totalTimeInSeconds)
                         sharedPrefsEdit?.apply()
                     }
-                    "Bottom Increment"-> {
+                    "Bottom Increment" -> {
                         sharedPrefsEdit?.putInt("BOT_INC", totalTimeInSeconds)
                         sharedPrefsEdit?.apply()
                     }
                 }
-                tv.text = "$mins:$secs"
+                tv.text = getString(R.string.timeNotation, mins, secs)
 
-            }, now[Calendar.HOUR_OF_DAY], minutesTv, secondsTv, true)
+            }, now[Calendar.HOUR_OF_DAY], minutesTv, secondsTv, true
+        )
         mTimePicker.setTitle(title)
+        mTimePicker.setOnShowListener {
+            mTimePicker.getButton(MyTimePickerDialog.BUTTON_NEGATIVE)
+                .setTextColor(resources.getColor(R.color.colorActive))
+            mTimePicker.getButton(MyTimePickerDialog.BUTTON_POSITIVE)
+                .setTextColor(resources.getColor(R.color.colorActive))
+        }
         mTimePicker.show()
+
     }
+
     companion object {
-        fun newInstance(): SettingsFragment{
+        fun newInstance(): SettingsFragment {
             return SettingsFragment()
         }
     }
