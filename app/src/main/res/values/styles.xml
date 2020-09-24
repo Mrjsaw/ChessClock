@@ -24,4 +24,8 @@
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
+
+    <style name="MyAppTheme.NumberPicker" parent="AppTheme">
+        <item name="colorControlNormal"> @color/colorActive </item>
+    </style>
 </resources>
