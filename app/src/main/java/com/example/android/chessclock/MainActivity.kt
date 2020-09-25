@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private var isNightModeOn: Boolean = false
     private var selfStart: Boolean = false
+    private var gamePaused: Boolean = false
 
     private var mediaPlayer: MediaPlayer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -130,7 +131,8 @@ class MainActivity : AppCompatActivity() {
      * Show dialog to restart game
      */
     private fun restartGame() {
-        if (clockState == ClockStates.CLOCK_START) {
+        if (clockState == ClockStates.CLOCK_START || gamePaused) {
+            gamePaused = false
             val dialog = AlertDialog.Builder(this)
                 .setMessage("Restart?")
                 .setPositiveButton(getString(R.string.yesStr)) { _, _ -> // dialog, whichButton are never used
@@ -158,6 +160,7 @@ class MainActivity : AppCompatActivity() {
         pauseTimerTop()
         pauseTimerBot()
         setColorClocksToNeutral()
+        gamePaused = true
     }
 
     /**
@@ -246,6 +249,7 @@ class MainActivity : AppCompatActivity() {
      * Code to run at Start of Timers
      */
     private fun onStartTimer() {
+        gamePaused = false
         clockState = ClockStates.CLOCK_START
         mediaPlayer?.start()
         pause_button.visibility = View.VISIBLE
