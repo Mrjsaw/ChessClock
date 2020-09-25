@@ -35,5 +35,6 @@ class SettingsActivity : AppCompatActivity() {
         val openMainActivity = Intent(this, MainActivity::class.java)
         openMainActivity.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
         startActivityIfNeeded(openMainActivity, 0);
+        finish()
     }
 }
